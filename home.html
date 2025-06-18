@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Home Page</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  /* Header */
+  .header {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background-color: #fff;
+    border-bottom: 1px solid #ccc;
+  }
+  .logo {
+    font-weight: bold;
+  }
+  .nav-buttons {
+    display: flex;
+    gap: 10px;
+  }
+  .nav-buttons button {
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  /* Auth links */
+  .auth-links {
+    display: flex;
+    gap: 10px;
+    margin-left: 20px;
+  }
+  /* Search bar container */
+  .search-container {
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+  }
+  .search-box {
+    width: 300px;
+    height: 40px;
+    padding: 8px;
+    border: 1px solid #888;
+    border-radius: 4px;
+  }
+  /* Main content */
+  .main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  /* Banner */
+  .banner {
+    margin: 20px auto;
+    width: 600px;
+    height: 150px;
+    border: 1px solid #888;
+    position: relative;
+  }
+  /* Sections */
+  .section {
+    width: 90%;
+    max-width: 650px;
+    margin: 20px 0;
+  }
+  .section h3 {
+    margin-bottom: 10px;
+    text-align: left;
+  }
+  /* Venue lists with scroll */
+  .venue-list {
+    display: flex;
+    overflow-x: auto;
+    padding: 10px 0;
+    gap: 10px;
+  }
+  .venue-item {
+    min-width: 150px;
+    height: 100px;
+    border: 1px solid #888;
+    flex-shrink: 0;
+  }
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<div class="header">
+  <div class="logo">LOGO</div>
+  <div class="nav-buttons">
+    <button>Near you</button>
+    <button>Discover</button>
+    <button>Review</button>
+  </div>
+  <div class="auth-links">
+    <a href="#">Sign up</a>
+    <a href="#">Log in</a>
+  </div>
+</div>
+
+<!-- Search bar -->
+<div class="search-container">
+  <input type="text" placeholder="Search" class="search-box" />
+</div>
+
+<!-- Main content -->
+<div class="main">
+
+  <!-- Banner -->
+  <div class="banner">
+    <!-- Placeholder for banner image or content -->
+  </div>
+
+  <!-- Popular venues -->
+  <div class="section">
+    <h3>Find out what's popular</h3>
+    <div class="venue-list">
+      <div class="venue-item"></div>
+      <div class="venue-item"></div>
+      <div class="venue-item"></div>
+    </div>
+  </div>
+
+  <!-- Venue interests -->
+  <div class="section">
+    <h3>Find venues based on your interests</h3>
+    <div class="venue-list">
+      <div class="venue-item"></div>
+      <div class="venue-item"></div>
+      <div class="venue-item"></div>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>
