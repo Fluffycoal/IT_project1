@@ -61,6 +61,29 @@
     text-decoration: none;
     margin: 0 10px;
   }
+  .password-wrapper {
+  position: relative;
+  width: 95%;
+}
+
+.password-wrapper input {
+  width: 100%;
+  padding: 8px 30px 8px 12px; /* right padding for icon space */
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.toggle-password {
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 16px;
+  color: #888;
+  user-select: none;
+}
 </style>
 </head>
 <body>
@@ -70,7 +93,10 @@
   <h2>Already have an account?</h2>
   <form id="loginForm">
     <input type="text" id="email" placeholder="Email/Username" style="width: 350px; height: 20px; font-size: 14px;" required />
-    <input type="password" id="password" placeholder="Password" style="width: 350px; height: 20px; font-size: 14px;" required />
+    <div class="password-wrapper">
+  <input type="password" id="password" placeholder="Password" style="width: 332px; height: 20px; font-size: 14px;" required />
+  <span class="toggle-password" onclick="togglePassword()">👁️</span>
+</div>
     <button type="submit" class="login-btn" style="width: 380px; height: 40px; font-size: 14px;" >Log in</button>
   </form>
   <div id="error-message"></div>
@@ -82,6 +108,18 @@
   </div>
 </div>
 <script>
+  function togglePassword() {
+  const passwordInput = document.getElementById("password");
+  const toggleIcon = document.querySelector(".toggle-password");
+
+  if (passwordInput.type === "password") {
+    passwordInput.type = "text";
+    toggleIcon.textContent = "🔒"; // Hide icon
+  } else {
+    passwordInput.type = "password";
+    toggleIcon.textContent = "👁️"; // Show icon
+  }
+}
     document.getElementById('loginForm').addEventListener('submit', async (e) => {
       e.preventDefault();
 
