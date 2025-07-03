@@ -68,11 +68,12 @@
   <div class="logo"><a href="home.html">VENUE~WISE</a>
   </div>
   <h2>Already have an account?</h2>
-  <form>
-    <input type="text" placeholder="Email/Username" style="width: 350px; height: 20px; font-size: 14px;" required />
-    <input type="password" placeholder="Password" style="width: 350px; height: 20px; font-size: 14px;" required />
+  <form id="loginForm">
+    <input type="text" id="email" placeholder="Email/Username" style="width: 350px; height: 20px; font-size: 14px;" required />
+    <input type="password" id="password" placeholder="Password" style="width: 350px; height: 20px; font-size: 14px;" required />
     <button type="submit" class="login-btn" style="width: 380px; height: 40px; font-size: 14px;" >Log in</button>
   </form>
+  <div id="error-message"></div>
   <div class="links">
     <a href="forgot_password.html">Forgot password?</a>
   </div>
@@ -80,5 +81,47 @@
     Don't have an account yet? <a href="signup.html">Sign up</a>
   </div>
 </div>
+<script>
+    document.getElementById('loginForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value.trim();
+      const errorMessage = document.getElementById('error-message');
+
+      try {
+        const res = await fetch('http://localhost:5000/api/auth/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ email, password })
+        });
+
+        const data = await res.json();
+
+        if (res.ok) {
+          localStorage.setItem('token', data.token);
+          localStorage.setItem('user', JSON.stringify(data.user));
+
+          const role = data.user.role;
+
+          if (role === 'client') {
+            window.location.href = 'client_home.html';
+          } else if (role === 'owner') {
+            window.location.href = 'owner_dashboard.html';
+          } else if (role === 'admin') {
+            window.location.href = 'admin_panel.html';
+          } else {
+            errorMessage.textContent = 'Unknown user role. Contact support.';
+          }
+        } else {
+          errorMessage.textContent = data.message || 'Invalid credentials';
+        }
+      } catch (error) {
+        errorMessage.textContent = 'Server error. Please try again.';
+      }
+    });
+  </script>
 </body>
 </html>
