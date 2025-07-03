@@ -3,60 +3,13 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Near You</title>
-<link rel="stylesheet" href="css/structure.css" />
+<title>Nearby Venues</title>
 <style>
   body {
     font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
+    margin: 20px;
   }
-  .header {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px 20px;
-    background-color: #fff;
-    border-bottom: 1px solid #ccc;
-  }
-  .logo {
-    font-weight: bold;
-  }
-  .logo a {
-    text-decoration: none;
-    color: #333;
-    font-size: 24px;
-  }
-  .nav-buttons {
-    display: flex;
-    gap: 10px;
-  }
-  .nav-buttons button {
-    padding: 8px 12px;
-    border: 1px solid #ccc;
-    background-color: #fff;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  .auth-links {
-    display: flex;
-    gap: 10px;
-    margin-left: 20px;
-  }
-  .auth-links a {
-      padding: 8px 20px;
-      text-decoration: none;
-      color: white;
-      background-color: #007bff; 
-      border-radius: 50px; 
-      border: none;
-      display: inline-block;
-      transition: background-color 0.3s;
-    }
-
-    .auth-links a:hover {
-      background-color: #0056b3;
-    }
-  #venueResults {
+  #venueList {
     margin-top: 20px;
   }
   .venue {
@@ -68,47 +21,17 @@
   h2 {
     margin-bottom: 10px;
   }
-  .location-button {
-    background-color: #4CAF50; /* Green */
-    color: white;
-    padding: 12px 24px;
-    border: none;
-    border-radius: 25px; 
-    font-size: 16px;
-    cursor: pointer;
-    font-weight: bold;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    transition: background-color 0.3s;
-  }
-  .location-button:hover {
-  background-color: #3a833d; 
-  }
-  
 </style>
 </head>
 <body>
-<div class="header">
-  <div class="logo"><a href="home.html">VENUE~WISE</a></div>
-  <div class="nav-buttons">
-    <button onclick="location.href='near_you.html'">Near you</button>
-    <button onclick="location.href='discover.html'">Discover</button>
-    <button onclick="location.href='review.html'">Review</button>
-  </div>
-  <div class="auth-links">
-    <a href="signup.html">Sign up</a>
-    <a href="login.html">Log in</a>
-  </div>
-</div>
 
-<div class="content">
-<h1>Find Venues Near You</h1>
-
-<button id="getLocationBtn" class="location-button">Allow Location Access</button>
+<h2>Find Venues Near You</h2>
+<button id="allowLocationBtn">Allow Location Access</button>
 <p id="status"></p>
-<div id="venueResults"></div>
+<div id="venueList"></div>
 
 <script>
-
+// Predefined list of venues with their coordinates
 const venues = [
   {
     name: "Shamba Cafe",
@@ -140,25 +63,27 @@ const venues = [
   }
 ];
 
-
+// Function to calculate distance between two points using Haversine formula
 function getDistance(lat1, lon1, lat2, lon2) {
   const R = 6371; // Earth's radius in km
   const dLat = ((lat2 - lat1) * Math.PI) / 180;
   const dLon = ((lon2 - lon1) * Math.PI) / 180;
+
   const a =
     Math.sin(dLat / 2) * Math.sin(dLat / 2) +
     Math.cos((lat1 * Math.PI) / 180) *
       Math.cos((lat2 * Math.PI) / 180) *
       Math.sin(dLon / 2) *
       Math.sin(dLon / 2);
+    
   const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-  return R * c;
+  return R * c; // in km
 }
 
-
-document.getElementById('getLocationBtn').addEventListener('click', () => {
+// Event Listener for button
+document.getElementById('allowLocationBtn').addEventListener('click', () => {
   const status = document.getElementById('status');
-  const resultsDiv = document.getElementById('venueResults');
+  const listDiv = document.getElementById('venueList');
 
   if (navigator.geolocation) {
     status.textContent = 'Requesting your location...';
@@ -169,22 +94,22 @@ document.getElementById('getLocationBtn').addEventListener('click', () => {
         const userLon = position.coords.longitude;
         status.textContent = `Your location: (${userLat.toFixed(4)}, ${userLon.toFixed(4)})`;
 
-        // Calculate distances
+        // Calculate distances to venues
         const venuesWithDistance = venues.map((venue) => ({
           ...venue,
           distance: getDistance(userLat, userLon, venue.lat, venue.lon)
         }));
 
-        // Sort by distance
+        // Sort by proximity
         venuesWithDistance.sort((a, b) => a.distance - b.distance);
 
-        // Show top 3
+        // Show top 3 closest venues
         const topVenues = venuesWithDistance.slice(0, 3);
+        
+        // Clear previous list
+        listDiv.innerHTML = '<h3>Closest Venues:</h3>';
 
-        // Clear previous results
-        resultsDiv.innerHTML = '<h3>Closest Venues:</h3>';
-
-        // Display nearby venues
+        // Display venues
         topVenues.forEach((venue) => {
           const venueDiv = document.createElement('div');
           venueDiv.className = 'venue';
@@ -194,12 +119,12 @@ document.getElementById('getLocationBtn').addEventListener('click', () => {
             Phone: ${venue.phone}<br>
             Distance: ${venue.distance.toFixed(2)} km
           `;
-          resultsDiv.appendChild(venueDiv);
+          listDiv.appendChild(venueDiv);
         });
       },
       (error) => {
         status.textContent = 'Unable to retrieve your location. Please try again.';
-        console.error('Geolocation error:', error);
+        console.error('Error obtaining location:', error);
       }
     );
   } else {
@@ -208,6 +133,5 @@ document.getElementById('getLocationBtn').addEventListener('click', () => {
 });
 </script>
 
-</div>
 </body>
 </html>
