@@ -1,0 +1,13 @@
+.star-rating {
+  font-size: 2em;
+  cursor: pointer;
+}
+
+.star {
+  color: #ccc; 
+}
+
+.star.selected,
+.star.hovered {
+  color: #ffd700; 
+}
