@@ -100,7 +100,7 @@
     <input type="email" id="username" placeholder="username" style="width: 350px; height: 20px; font-size: 14px;" required />
     <div class="password-wrapper">
   <input type="password" id="password" placeholder="Password" style="width: 332px; height: 20px; font-size: 14px;" required />
-  <span class="toggle-password" onclick="togglePassword()">👁️</span>
+  <span class="toggle-password" onclick="togglePassword()" title="Show Password">👁️</span>
 </div>
     <select id="role" style="width: 375px; height: 35px; font-size: 14px;" required >
       <option value="">--Select Role--</option>
@@ -122,9 +122,11 @@
   if (passwordInput.type === "password") {
     passwordInput.type = "text";
     toggleIcon.textContent = "🔒"; // Now it's visible
+    toggleIcon.title = "Hide Password";
   } else {
     passwordInput.type = "password";
     toggleIcon.textContent = "👁️"; // Now it's hidden
+    toggleIcon.title = "Show Password";
   }
 }
   window.onload = function () {
