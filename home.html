@@ -11,7 +11,6 @@
     padding: 0;
   }
 
-  
   .header {
     display: flex;
     justify-content: space-between;
@@ -53,7 +52,6 @@
     border-radius: 4px;
   }
 
-  
   .search-container {
     display: flex;
     justify-content: center;
@@ -67,7 +65,6 @@
     border-radius: 4px;
   }
 
-  
   .categories {
     display: flex;
     justify-content: center;
@@ -82,14 +79,12 @@
     cursor: pointer;
   }
 
-  
   .main {
     display: flex;
     flex-direction: column;
     align-items: center;
   }
 
-  
   .banner {
     margin: 20px auto;
     width: 600px;
@@ -98,7 +93,6 @@
     position: relative;
   }
 
-  
   .section {
     width: 90%;
     max-width: 650px;
@@ -109,7 +103,6 @@
     text-align: left;
   }
 
-  
   .carousel-container {
     position: relative;
     display: flex;
@@ -119,7 +112,6 @@
     margin: auto;
   }
 
-  
   .arrow-left,
   .arrow-right {
     position: absolute;
@@ -142,7 +134,6 @@
     right: 10px;
   }
 
-  
   .venue-list {
     display: flex;
     overflow-x: auto;
@@ -156,7 +147,6 @@
     display: none;
   }
 
-  
   .venue-image {
     width: 150px;
     height: 150px;
@@ -166,7 +156,6 @@
 </style>
 </head>
 <body>
-
 
 <div class="header">
   <div class="logo"><a href="home.html">VENUE~WISE</a></div>
@@ -181,11 +170,9 @@
   </div>
 </div>
 
-
 <div class="search-container">
   <input type="text" placeholder="Search" class="search-box" />
 </div>
-
 
 <div class="categories">
   <button onclick="location.href='restaurants.html'">Restaurants</button>
@@ -195,60 +182,60 @@
   <button onclick="location.href='outdoors.html'">Outdoors</button>
 </div>
 
-
 <div class="main">
 
-  
   <div class="banner">
     <img src="images/Venue~wise banner gif.gif" alt="Banner Image" style="width: 100%; height: 100%; object-fit: cover;" />
   </div>
 
- 
   <div class="section">
     <h3>Find out what's popular</h3>
     <div class="carousel-container">
       <button class="arrow-left" onclick="scrollCarousel(-1)">&#8592;</button>
       <div class="venue-list" id="popularCarousel">
-        
         <a href="restaurants.html">
-        <img src="images/carnivore restaurant.jpg" class="venue-image" alt="">
-        </a>
-        <a href="restaurants.html">
-        <img src="images/NSK.jpg" class="venue-image" alt="">
+          <img src="images/carnivore restaurant.jpg" class="venue-image" alt="">
         </a>
         <a href="restaurants.html">
-        <img src="images/harvest.jpg" class="venue-image" alt="">
+          <img src="images/NSK.jpg" class="venue-image" alt="">
+        </a>
+        <a href="restaurants.html">
+          <img src="images/harvest.jpg" class="venue-image" alt="">
         </a>
         <a href="hotels.html">
-        <img src="images/Tribe.jpg" class="venue-image" alt="">
+          <img src="images/Tribe.jpg" class="venue-image" alt="">
         </a>
         <a href="hotels.html">
-        <img src="images/kempinski.jpg" class="venue-image" alt="">
+          <img src="images/kempinski.jpg" class="venue-image" alt="">
         </a>
         <a href="hotels.html">
-        <img src="images/kwetu.jpg" class="venue-image" alt="">
+          <img src="images/kwetu.jpg" class="venue-image" alt="">
         </a>
         <a href="hotels.html">
-        <img src="images/radisson blu.jpg" class="venue-image" alt="">
+          <img src="images/radisson blu.jpg" class="venue-image" alt="">
         </a>
       </div>
       <button class="arrow-right" onclick="scrollCarousel(1)">&#8594;</button>
     </div>
   </div>
 
-
-  <div class="section">
-    <h3>Find venues based on your interests</h3>
-    <div class="venue-list">
-      <div class="venue-item"></div>
-      <div class="venue-item"></div>
-      <div class="venue-item"></div>
-    </div>
-  </div>
-
 </div>
 
-<script src="scripts.js"></script>
+<script>
+  
+  function scrollCarousel(direction) {
+    const container = document.getElementById('popularCarousel');
+    const scrollAmount = 150; 
+    
+    if (direction === -1) {
+      
+      container.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+    } else {
+      
+      container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    }
+  }
+</script>
 
 </body>
 </html>
