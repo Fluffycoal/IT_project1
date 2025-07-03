@@ -61,6 +61,29 @@
     text-decoration: none;
     margin: 0 10px;
   }
+  .password-wrapper {
+  position: relative;
+  width: 95%;
+}
+
+.password-wrapper input {
+  width: 100%;
+  padding: 8px 30px 8px 12px; /* right padding for icon space */
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.toggle-password {
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 16px;
+  color: #888;
+  user-select: none;
+}
 </style>
 </head>
 <body>
@@ -69,10 +92,11 @@
   </div>
   <h2>Already have an account?</h2>
   <form>
-    <input type="text" placeholder="Email" style="width: 350px; height: 20px; font-size: 14px;" required />
+    <input type="email" id="email" placeholder="Email" style="width: 370px; height: 30px; font-size: 14px;" required />
     <input type="password" placeholder="Password" style="width: 350px; height: 20px; font-size: 14px;" required />
     <button type="submit" class="login-btn" style="width: 380px; height: 40px; font-size: 14px;" >Log in</button>
   </form>
+  <div id="error-message"></div>
   <div class="links">
     <a href="forgot_password.html">Forgot password?</a>
   </div>
@@ -80,5 +104,61 @@
     Don't have an account yet? <a href="signup.html">Sign up</a>
   </div>
 </div>
+<script>
+  function togglePassword() {
+    const passwordInput = document.getElementById("password");
+    const toggleIcon = document.querySelector(".toggle-password");
+
+    if (passwordInput.type === "password") {
+      passwordInput.type = "text";
+      toggleIcon.textContent = "🙈";
+      toggleIcon.title = "Hide Password";
+    } else {
+      passwordInput.type = "password";
+      toggleIcon.textContent = "👁️";
+      toggleIcon.title = "Show Password";
+    }
+  }
+    document.getElementById('loginForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value.trim();
+      const errorMessage = document.getElementById('error-message');
+
+      try {
+        const res = await fetch('http://localhost:5000/api/auth/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ email, password })
+        });
+
+        const data = await res.json();
+
+        if (res.ok) {
+          localStorage.setItem('token', data.token);
+          localStorage.setItem('user', JSON.stringify(data.user));
+
+          const role = data.user.role;
+
+          if (role === 'client') {
+            window.location.href = 'client_home.html';
+          } else if (role === 'owner') {
+            window.location.href = 'owner_dashboard.html';
+          } else if (role === 'admin') {
+            window.location.href = 'admin_panel.html';
+          } else {
+            errorMessage.textContent = 'Unknown user role. Contact support.';
+          }
+        } else {
+          errorMessage.textContent = data.message || 'Invalid credentials';
+        }
+      } catch (error) {
+        errorMessage.textContent = 'Server error. Please try again.';
+      }
+    });
+  </script>
 </body>
 </html>
