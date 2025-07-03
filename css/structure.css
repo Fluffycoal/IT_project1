@@ -5,6 +5,11 @@
 }
 .hotel-description {
     font-size: 14px;
-    max-width: 600px; /* optional, limit text width */
-    margin-top: 8px; /* optional spacing */
+    max-width: 600px; 
+    margin-top: 8px; 
+}
+.restaurant-description {
+    font-size: 14px;
+    max-width: 600px; 
+    margin-top: 8px; 
 }
