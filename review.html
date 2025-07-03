@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Review</title>
-    <style>
-     body {
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Review</title>
+<style>
+  body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
@@ -50,10 +50,19 @@
     border: 1px solid #ccc;
     border-radius: 4px;
   }
+
+  /* Styles for star rating */
+  .star {
+    font-size: 2em;
+    cursor: pointer;
+    color: #ccc; /* default color for unselected stars */
+  }
+  .star.selected {
+    color: #ffd700; /* gold color for selected stars */
+  }
 </style>
 </head>
 <body>
-    
 <div class="header">
   <div class="logo"><a href="home.html">VENUE~WISE</a></div>
   <div class="nav-buttons">
@@ -66,5 +75,65 @@
     <a href="login.html">Log in</a>
   </div>
 </div>
+
+<form id="ReviewForm" action="submit_review.php" method="post" style="margin: 20px;">
+<div style="display: flex; flex-direction: column; align-items: center;">
+  <h2 style="font-size: 24px; margin-bottom: 20px;">Write a Review</h2>
+  
+  <label for="venue" style="font-size: 16px; margin-bottom: 10px;">Venue Name:</label>
+  <input type="text" id="venue" name="venue" placeholder="Enter venue name" style="width: 350px; height: 30px; font-size: 14px;" required />
+  <br /><br />
+  
+  <label for="rating">Rating:</label>
+  <div class="star-rating" style="display: flex; gap: 5px; margin-top: 5px;">
+    <span class="star" data-value="1">&#9733;</span>
+    <span class="star" data-value="2">&#9733;</span>
+    <span class="star" data-value="3">&#9733;</span>
+    <span class="star" data-value="4">&#9733;</span>
+    <span class="star" data-value="5">&#9733;</span>
+  </div>
+  <!-- Hidden input to store the selected rating -->
+  <input type="hidden" id="rating" name="rating" value="0" required />
+  <br /><br />
+  
+  <label for="review">Write your review here...</label>
+  <textarea id="review" name="review" placeholder="Write your review here..." style="width: 350px; height: 100px; font-size: 14px;" required></textarea>
+  <br /><br />
+  
+  <button type="submit" style="width: 100px; height: 30px; font-size: 14px;">Submit</button>
+</div>
+</form>
+
+<!-- JavaScript for star rating -->
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const stars = document.querySelectorAll('.star');
+    const ratingInput = document.getElementById('rating');
+
+    stars.forEach(star => {
+      star.addEventListener('mouseover', () => {
+        highlightStars(star.dataset.value);
+      });
+      star.addEventListener('mouseout', () => {
+        highlightStars(ratingInput.value);
+      });
+      star.addEventListener('click', () => {
+        ratingInput.value = star.dataset.value;
+        highlightStars(star.dataset.value);
+      });
+    });
+
+    function highlightStars(rating) {
+      stars.forEach(star => {
+        if (parseInt(star.dataset.value) <= rating) {
+          star.classList.add('selected');
+        } else {
+          star.classList.remove('selected');
+        }
+      });
+    }
+  });
+</script>
+
 </body>
 </html>
