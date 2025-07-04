@@ -91,9 +91,9 @@
   <div class="logo"><a href="home.html">VENUE~WISE</a>
   </div>
   <h2>Already have an account?</h2>
-  <form>
+  <form id="loginForm">
     <input type="email" id="email" placeholder="Email" style="width: 370px; height: 30px; font-size: 14px;" required />
-    <input type="password" placeholder="Password" style="width: 350px; height: 20px; font-size: 14px;" required />
+    <input type="password" id="password" placeholder="Password" style="width: 350px; height: 20px; font-size: 14px;" required />
     <button type="submit" class="login-btn" style="width: 380px; height: 40px; font-size: 14px;" >Log in</button>
   </form>
   <div id="error-message"></div>
@@ -144,7 +144,7 @@
           const role = data.user.role;
 
           if (role === 'client') {
-            window.location.href = 'client_home.html';
+            window.location.href = 'home.html';
           } else if (role === 'owner') {
             window.location.href = 'owner_dashboard.html';
           } else if (role === 'admin') {

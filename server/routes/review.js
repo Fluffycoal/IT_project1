@@ -1,40 +1,77 @@
 const express = require('express');
 const router = express.Router();
+const { authenticateUser } = require('../middleware/authMiddleware');
 const Review = require('../models/Review');
-const User = require('../models/user');
+const Venue = require('../models/Venue');
+const { Op, fn, col } = require('sequelize');
 
-// POST /api/reviews
-router.post('/', async (req, res) => {
+
+
+router.post('/', authenticateUser, async (req, res) => {
+  const { venueName, rating, comment } = req.body;
+
+  if (!venueName || !rating) {
+    return res.status(400).json({ message: 'Venue name and rating are required' });
+  }
+
   try {
-    const { clientId, venueId, rating, comment } = req.body;
+    // Find venue by name
+    const venue = await Venue.findOne({
+      where: fn('LOWER', col('name')),
+      [Symbol.for('sequelize.where')]: [fn('LOWER', col('name')), venueName.toLowerCase()]
+    });
 
-    if (!clientId || !venueId || !rating) {
-      return res.status(400).json({ message: 'Required fields missing' });
+    if (!venue) {
+      return res.status(404).json({ message: 'Venue not found with that name' });
     }
 
-    const review = await Review.create({ clientId, venueId, rating, comment });
+    const review = await Review.create({
+      clientId: req.user.id,     // From the authenticated token
+      venueId: venue.id,         // Retrieved from DB using venue name
+      rating,
+      comment
+    });
 
-    res.status(201).json({ message: 'Review submitted', review });
+    res.status(201).json({ message: 'Review submitted successfully', review });
   } catch (error) {
-    res.status(500).json({ message: 'Server error', error: error.message });
+    console.error('❌ Error submitting review:', error);
+    res.status(500).json({ message: 'Server error. Please try again.' });
   }
 });
 
-// GET /api/reviews/:venueId
-router.get('/:venueId', async (req, res) => {
+
+router.get('/venue/:venueName/reviews', async (req, res) => {
+  const { venueName } = req.params;
+
   try {
-    const venueId = req.params.venueId;
+    const venue = await Venue.findOne({
+      where: fn('LOWER', col('name')),
+      [Symbol.for('sequelize.where')]: [fn('LOWER', col('name')), venueName.toLowerCase()]
+    });
+
+    if (!venue) {
+      return res.status(404).json({ message: 'Venue not found' });
+    }
 
     const reviews = await Review.findAll({
-      where: { venueId },
-      include: [{ model: User, attributes: ['username'] }],
+      where: { venueId: venue.id },
+      include: { model: require('../models/user'), attributes: ['username'] },
       order: [['createdAt', 'DESC']]
     });
 
-    res.json(reviews);
+    const formatted = reviews.map((r) => ({
+      id: r.id,
+      rating: r.rating,
+      comment: r.comment,
+      username: r.User?.username || 'Anonymous'
+    }));
+
+    res.json(formatted);
   } catch (error) {
-    res.status(500).json({ message: 'Server error', error: error.message });
+    console.error('Error fetching reviews:', error);
+    res.status(500).json({ message: 'Server error' });
   }
 });
+
 
 module.exports = router;
