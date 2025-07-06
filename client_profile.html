@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Profile</title>
+<style>
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+  }
+
+  /* Sidebar styles */
+  .sidebar {
+    width: 250px;
+    background: linear-gradient(to bottom, #f0826f, #dc4f3f); /* blue background similar to your image */
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding-top: 20px;
+    position: fixed; /* Keep sidebar fixed on the side */
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.2);
+  }
+
+  .sidebar h2 {
+    color: white;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 20px;
+  }
+
+  /* Navigation links inside sidebar */
+  .sidebar a {
+    display: block;
+    padding: 15px 20px;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    margin: 5px 0;
+  }
+  .sidebar a:hover {
+    background-color: #dc4f3f;
+  }
+
+  /* Logout button styling */
+  .logout {
+    margin-top: auto;
+    padding: 15px 20px;
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    margin: 20px;
+    border-radius: 4px;
+    width: calc(100% - 40px);
+    text-align: center;
+  }
+
+  /* Main content styles */
+  .main {
+    margin-left: 250px; /* Leave space for sidebar */
+    padding: 20px;
+    flex: 1;
+    width: calc(100% - 250px);
+  }
+
+  /* Your existing styles for header and icons remain unchanged */
+  .header {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background-color: #fff;
+    border-bottom: 1px solid #ccc;
+  }
+  .logo {
+    font-weight: bold;
+  }
+  .logo a {
+    text-decoration: none;
+    color: #333;
+    font-size: 24px;
+  }
+
+  .nav-buttons {
+    display: flex;
+    gap: 10px;
+  }
+  .nav-buttons button {
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    border-radius: 50px;
+    cursor: pointer;
+  }
+  .nav-buttons button:hover {
+    background-color: #f0f0f0; 
+  }
+
+  .auth-links {
+    display: flex;
+    gap: 10px;
+    margin-left: 20px;
+  }
+  .auth-links a {
+      padding: 8px 20px;
+      text-decoration: none;
+      color: white;
+      background-color: #007bff; 
+      border-radius: 50px; 
+      border: none;
+      display: inline-block;
+      transition: background-color 0.3s;
+  }
+
+  .auth-links a:hover {
+    background-color: #0056b3; 
+  }
+  .logout{
+    background-color: #dd3131;
+  }
+
+  /* Rest of your styles (search, categories, etc.) remain the same */
+
+</style>
+</head>
+<body>
+
+<!-- Sidebar -->
+<div class="sidebar">
+  <h2><a href="client_home.html"></a>VENUE~WISE</h2>
+  <a href="#">My Bookings</a>
+  <a href="#">My Reviews</a>
+  <a href="#">Notifications</a>
+  <a href="#">Settings</a>
+    <button class="logout" onclick="location.href='index.html'">Logout</button>
+</div>
+
+<!-- Main Content -->
+<div class="main">
+    
+
+<div class="header">
+    <div class="icons">
+        <a href="client_home.html">
+            <img src="images/home icon.png" alt="Home Icon" style="width: 40px; height:90%; object-fit: cover;"/>
+        </a>
+    </div>
+  <div class="nav-buttons">
+    <button onclick="location.href='near_you.html'">Near you</button>
+    <button onclick="location.href='discover.html'">Discover</button>
+    <button onclick="location.href='review.html'">Review</button>
+  </div>
+  <div class="icons">
+    <a href="notifications.html">
+    <img src="images/messages icon.png" alt="Messages Icon" style="width: 50px; height:100%; object-fit: cover;"/>
+    </a>
+    <a href="client_profile.html">
+    <img src="images/Venue_wise_1_-removebg-preview.png" alt="Profile Icon" style="width: 50px; height:100%; object-fit: cover;" />
+    </a>
+  </div>
+</div>
+
+<!-- Rest of your content (search, categories, banners, etc.) can go here -->
+<!-- For demonstration, add a simple placeholder -->
+<div style="margin-top: 20px;">
+<h1>Welcome to Your Profile</h1>
+<p>This is your main content area.</p>
+</div>
+
+</div>
+
+</body>
+</html>
