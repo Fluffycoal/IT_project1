@@ -12,25 +12,30 @@ const authenticateUser = (req, res, next) => {
 
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    req.user = decoded;
+    req.user = decoded; // decoded = { id, email, role, ... }
     next();
   } catch (error) {
     return res.status(401).json({ message: 'Invalid token' });
   }
 };
 
-// Middleware to only allow admins
+// Middleware to only allow admin with specific email
 const verifyAdmin = (req, res, next) => {
-  const token = req.headers.authorization;
+  const authHeader = req.headers.authorization;
 
-  if (!token) {
+  if (!authHeader || !authHeader.startsWith('Bearer ')) {
     return res.status(401).json({ message: 'No token provided' });
   }
+
+  const token = authHeader.split(' ')[1];
 
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
-    if (decoded.role !== 'admin') {
+    if (
+      decoded.role !== 'admin' ||
+      decoded.email !== 'kiptoo.brian@strathmore.edu'
+    ) {
       return res.status(403).json({ message: 'Access denied: Admins only' });
     }
 
@@ -41,8 +46,7 @@ const verifyAdmin = (req, res, next) => {
   }
 };
 
-// ✅ Export both middlewares
 module.exports = {
   authenticateUser,
-  verifyAdmin
+  verifyAdmin,
 };
