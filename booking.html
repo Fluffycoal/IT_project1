@@ -1,11 +1,220 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Booking</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Home Page</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background-color: #fff;
+    border-bottom: 1px solid #ccc;
+  }
+  .logo {
+    font-weight: bold;
+  }
+  .logo a {
+    text-decoration: none;
+    color: #333;
+    font-size: 24px;
+  }
+
+  .nav-buttons {
+    display: flex;
+    gap: 10px;
+  }
+  .nav-buttons button {
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    border-radius: 50px;
+    cursor: pointer;
+  }
+  .nav-buttons button:hover {
+    background-color: #f0f0f0; 
+  }
+
+  .auth-links {
+    display: flex;
+    gap: 10px;
+    margin-left: 20px;
+  }
+  .auth-links a {
+      padding: 8px 20px;
+      text-decoration: none;
+      color: white;
+      background-color: #007bff; 
+      border-radius: 50px; 
+      border: none;
+      display: inline-block;
+      transition: background-color 0.3s;
+    }
+
+    .auth-links a:hover {
+      background-color: #0056b3; 
+    }
+
+  .search-container {
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+  }
+  .search-box {
+    width: 600px;
+    height: 40px;
+    padding: 8px;
+    border: 1px solid #888;
+    border-radius: 4px;
+  }
+
+  .categories {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+  }
+  .categories button {
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    color: #000;
+    border-radius: 50px;
+    cursor: pointer;
+  }
+  .categories button:hover{
+    background-color: #f0f0f0;
+  }
+
+  .main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .banner {
+    margin: 20px auto;
+    width: 600px;
+    height: 150px;
+    border: 1px solid #888;
+    position: relative;
+  }
+
+  .section {
+    width: 90%;
+    max-width: 650px;
+    margin: 20px 0;
+  }
+  .section h3 {
+    margin-bottom: 10px;
+    text-align: left;
+  }
+
+  .container {
+    width: 400px;
+    margin: 50px auto;
+    border: 1px solid #ccc;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
+  }
+
+  .arrow-left,
+  .arrow-right {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(255,255,255,0.8);
+    border: none;
+    font-size: 24px;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 50%;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+
+  .arrow-left {
+    left: 10px;
+  }
+  .arrow-right {
+    right: 10px;
+  }
+
+  .venue-list {
+    display: flex;
+    overflow-x: auto;
+    gap: 10px;
+    padding: 10px 0;
+    width: 100%;
+    scrollbar-width: none;
+  }
+  
+  .venue-list::-webkit-scrollbar {
+    display: none;
+  }
+
+  .venue-image {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    display: block;
+  }
+</style>
 </head>
 <body>
-    
+
+<div class="header">
+  <div class="logo"><a href="home.html">VENUE~WISE</a></div>
+  <div class="nav-buttons">
+    <button onclick="location.href='near_you.html'">Near you</button>
+    <button onclick="location.href='discover.html'">Discover</button>
+    <button onclick="location.href='review.html'">Review</button>
+  </div>
+  <div class="auth-links">
+    <a href="signup.html">Sign up</a>
+    <a href="login.html">Log in</a>
+  </div>
+</div>
+
+<div class="container">
+
+  <h2>Want to book a venue for an event?</h2>
+  <form>
+  <label for="name">Name:</label><br />
+  <input type="text" id="name" name="name" required /><br /><br />
+
+  <label for="email">Email Address:</label><br />
+  <input type="email" id="email" name="email" required /><br /><br />
+
+  <label for="phone">Phone Number:</label><br />
+  <input type="tel" id="phone" name="phone" required /><br /><br />
+
+  <label for="date">Event Date:</label><br />
+  <input type="date" id="date" name="date" required /><br /><br />
+
+  <label for="time">Event Time:</label><br />
+  <input type="time" id="time" name="time" required /><br /><br />
+
+  <label for="guests">Number of Guests:</label><br />
+  <input type="number" id="guests" name="guests" min="1" required /><br /><br />
+
+  <label for="requirements">Venue Requirements:</label><br />
+  <textarea id="requirements" name="requirements" rows="4" placeholder="Specify any needs or equipment..."></textarea><br /><br />
+
+  <label for="notes">Additional Notes:</label><br />
+  <textarea id="notes" name="notes" rows="4" placeholder="Any other info or requests..."></textarea><br /><br />
+
+  <button type="submit">Submit Booking Request</button>
+</form>
+
+</div>
+
 </body>
 </html>
