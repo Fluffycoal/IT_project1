@@ -19,7 +19,7 @@ const authenticateUser = (req, res, next) => {
   }
 };
 
-// Middleware to only allow admin with specific email
+// Middleware to allow specific admins by email
 const verifyAdmin = (req, res, next) => {
   const authHeader = req.headers.authorization;
 
@@ -32,11 +32,15 @@ const verifyAdmin = (req, res, next) => {
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
-    if (
-      decoded.role !== 'admin' ||
-      decoded.email !== 'kiptoo.brian@strathmore.edu'
-    ) {
-      return res.status(403).json({ message: 'Access denied: Admins only' });
+    // ✅ List of allowed admin emails
+    const allowedAdmins = [
+      'kiptoo.brian@strathmore.edu',
+      'amanda.mbatha@strathmore.edu'
+    ];
+
+    // ✅ Check role and if email is in allowed list
+    if (decoded.role !== 'admin' || !allowedAdmins.includes(decoded.email)) {
+      return res.status(403).json({ message: 'Access denied: Authorized admins only' });
     }
 
     req.user = decoded;
