@@ -3,10 +3,11 @@ const router = express.Router();
 const { authenticateUser } = require('../middleware/authMiddleware');
 const Review = require('../models/Review');
 const Venue = require('../models/Venue');
-const { Op, fn, col } = require('sequelize');
+const User = require('../models/user'); 
+const Sequelize = require('sequelize');
+const { fn, col } = Sequelize;
 
-
-
+// ✅ Submit a review
 router.post('/', authenticateUser, async (req, res) => {
   const { venueName, rating, comment } = req.body;
 
@@ -15,10 +16,12 @@ router.post('/', authenticateUser, async (req, res) => {
   }
 
   try {
-    // Find venue by name
+    // ✅ Case-insensitive search for venue
     const venue = await Venue.findOne({
-      where: fn('LOWER', col('name')),
-      [Symbol.for('sequelize.where')]: [fn('LOWER', col('name')), venueName.toLowerCase()]
+      where: Sequelize.where(
+        fn('LOWER', col('name')),
+        venueName.toLowerCase()
+      )
     });
 
     if (!venue) {
@@ -26,8 +29,8 @@ router.post('/', authenticateUser, async (req, res) => {
     }
 
     const review = await Review.create({
-      clientId: req.user.id,     // From the authenticated token
-      venueId: venue.id,         // Retrieved from DB using venue name
+      clientId: req.user.id,
+      venueId: venue.id,
       rating,
       comment
     });
@@ -39,14 +42,16 @@ router.post('/', authenticateUser, async (req, res) => {
   }
 });
 
-
+// ✅ Fetch reviews for a venue
 router.get('/venue/:venueName/reviews', async (req, res) => {
   const { venueName } = req.params;
 
   try {
     const venue = await Venue.findOne({
-      where: fn('LOWER', col('name')),
-      [Symbol.for('sequelize.where')]: [fn('LOWER', col('name')), venueName.toLowerCase()]
+      where: Sequelize.where(
+        fn('LOWER', col('name')),
+        venueName.toLowerCase()
+      )
     });
 
     if (!venue) {
@@ -55,7 +60,7 @@ router.get('/venue/:venueName/reviews', async (req, res) => {
 
     const reviews = await Review.findAll({
       where: { venueId: venue.id },
-      include: { model: require('../models/user'), attributes: ['username'] },
+      include: { model: User, attributes: ['username'] },
       order: [['createdAt', 'DESC']]
     });
 
@@ -68,10 +73,9 @@ router.get('/venue/:venueName/reviews', async (req, res) => {
 
     res.json(formatted);
   } catch (error) {
-    console.error('Error fetching reviews:', error);
+    console.error('❌ Error fetching reviews:', error);
     res.status(500).json({ message: 'Server error' });
   }
 });
-
 
 module.exports = router;

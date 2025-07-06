@@ -12,7 +12,7 @@ const authenticateUser = (req, res, next) => {
 
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    req.user = decoded; // Attach user info (id, role) to request
+    req.user = decoded;
     next();
   } catch (error) {
     return res.status(401).json({ message: 'Invalid token' });
@@ -34,11 +34,15 @@ const verifyAdmin = (req, res, next) => {
       return res.status(403).json({ message: 'Access denied: Admins only' });
     }
 
-    req.user = decoded; // Attach user to request
-    next(); // Move to the next middleware or route
+    req.user = decoded;
+    next();
   } catch (error) {
     res.status(401).json({ message: 'Invalid token', error: error.message });
   }
 };
 
-module.exports = { verifyAdmin };
+// ✅ Export both middlewares
+module.exports = {
+  authenticateUser,
+  verifyAdmin
+};
