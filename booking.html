@@ -215,6 +215,64 @@
 </form>
 
 </div>
+<script>
+  document.querySelector('form').addEventListener('submit', async function (e) {
+    e.preventDefault();
+
+    const name = document.getElementById('name').value;
+    const venueName = document.getElementById('venue').value;
+    const phone = document.getElementById('phone').value;
+    const eventDate = document.getElementById('date').value;
+    const eventTime = document.getElementById('time').value;
+    const guests = document.getElementById('guests').value;
+    const requirements = document.getElementById('requirements').value;
+    const notes = document.getElementById('notes').value;
+
+    // Optional: You can get token from localStorage if required
+    const token = localStorage.getItem('token');
+
+    try {
+      // First, fetch the venue ID by venue name (or handle it directly if known)
+      const venueRes = await fetch(`http://localhost:5000/api/venues/searchByName?name=${encodeURIComponent(venueName)}`);
+      if (!venueRes.ok) throw new Error('Venue not found');
+      const venue = await venueRes.json();
+
+      const bookingData = {
+        name,
+        phone,
+        eventDate,
+        eventTime,
+        guests,
+        requirements,
+        notes,
+        venueId: venue.id,
+      };
+
+      const response = await fetch('http://localhost:5000/api/bookings', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          ...(token ? { 'Authorization': `Bearer ${token}` } : {})
+        },
+        body: JSON.stringify(bookingData)
+      });
+
+      if (!response.ok) {
+        const err = await response.json();
+        alert('Booking failed: ' + err.message);
+        return;
+      }
+
+      alert('Booking submitted successfully!');
+      document.querySelector('form').reset();
+    } catch (err) {
+      console.error('Error submitting booking:', err);
+      alert('An error occurred while booking.');
+    }
+  });
+</script>
+
+
 
 </body>
 </html>
