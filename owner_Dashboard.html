@@ -11,6 +11,7 @@
   <!-- Sidebar -->
   <aside class="w-64 bg-orange-600 text-white flex flex-col p-6">
     <h1 class="text-2xl font-bold mb-10">VENUE<span class="text-yellow-200">WISE</span></h1>
+    <h2 onclick="refreshDashboard()" class="text-2xl font-bold mb-8 cursor-pointer hover:underline">Owner Panel</h2>
     <nav class="flex flex-col space-y-4">
       <button onclick="loadSection('myVenues')" class="hover:bg-orange-500 px-3 py-2 rounded text-left">My Venues</button>
       <button onclick="loadSection('manageVenues')" class="hover:bg-orange-500 px-3 py-2 rounded text-left">Manage Venues</button>
@@ -245,6 +246,14 @@
     document.getElementById('dashboard-content').innerHTML = `<p class="text-red-600">Failed to load reviews.</p>`;
   }
 }
+  function refreshDashboard() {
+  const contentDiv = document.getElementById('dashboard-content');
+  contentDiv.innerHTML = `
+      <h3 class="text-lg font-semibold mb-2">Welcome, Venue Owner 👋</h3>
+      <p>Select a section from the sidebar to begin managing your venues.</p>
+  `;
+  }   
+    
 
   </script>
 
