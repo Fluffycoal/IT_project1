@@ -342,11 +342,18 @@ async function loadBookingStats(range = 'monthly') {
 
   const bookings = await res.json();
 
-  const calendarEvents = bookings.map(b => ({
-    title: `${b.Venue?.name || 'Venue'} - ${b.User?.username || 'Client'}`,
-    start: b.eventDate,
-    color: b.status === 'approved' ? 'green' : b.status === 'rejected' ? 'red' : 'orange'
-  }));
+   const calendarEvents = bookings.map(b => ({
+  title: `${b.Venue?.name || 'Venue'} - ${b.User?.username || 'Client'}`,
+  start: b.eventDate,
+  color: b.status === 'approved' ? 'green' : b.status === 'rejected' ? 'red' : 'orange',
+  extendedProps: {
+    status: b.status,
+    guests: b.guests,
+    requirements: b.requirements,
+    notes: b.notes
+  }
+}));
+
 
   // Delay to ensure DOM is rendered
   setTimeout(() => {
@@ -357,15 +364,31 @@ async function loadBookingStats(range = 'monthly') {
     console.log("📅 Events to render:", calendarEvents);
 
     const calendar = new FullCalendar.Calendar(calendarEl, {
-      initialView: 'dayGridMonth',
-      headerToolbar: {
-        start: 'title',
-        center: '',
-        end: 'prev,next today'
-      },
-      height: 600,
-      events: calendarEvents
-    });
+  initialView: 'dayGridMonth',
+  headerToolbar: {
+    start: 'title',
+    center: '',
+    end: 'prev,next today'
+  },
+  height: 600,
+  events: calendarEvents,
+  eventClick: function(info) {
+    const event = info.event;
+    const props = event.extendedProps;
+
+    alert(
+      `📅 Booking Details:\n` +
+      `Venue: ${event.title.split(' - ')[0]}\n` +
+      `Client: ${event.title.split(' - ')[1]}\n` +
+      `Date: ${event.start.toDateString()}\n` +
+      `Status: ${props.status || 'Unknown'}\n` +
+      `Guests: ${props.guests || 'N/A'}\n` +
+      `Requirements: ${props.requirements || 'N/A'}\n` +
+      `Notes: ${props.notes || 'None'}`
+    );
+  }
+});
+
 
     calendar.render();
   }, 0);
