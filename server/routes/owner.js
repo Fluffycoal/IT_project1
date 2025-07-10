@@ -107,5 +107,19 @@ router.get('/summary', authenticateUser, verifyOwner, async (req, res) => {
     res.status(500).json({ message: 'Error fetching summary', error: err.message });
   }
 });
+// dashboard summary
+router.get('/dashboard', authenticateUser, verifyOwner, async (req, res) => {
+  const ownerId = req.user.id;
+  const totalVenues = await Venue.count({ where: { ownerId } });
+  const totalBookings = await Booking.count({
+    include: { model: Venue, where: { ownerId } }
+  });
+  const totalReviews = await Review.count({
+    include: { model: Venue, where: { ownerId } }
+  });
+
+  res.json({ totalVenues, totalBookings, totalReviews });
+});
+
 
 module.exports = router;

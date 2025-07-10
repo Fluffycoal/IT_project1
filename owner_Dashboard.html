@@ -46,6 +46,9 @@
     <!-- Dynamic Content Area -->
     <section class="p-6 overflow-y-auto flex-1" id="dashboard-content">
       <h3 class="text-lg font-semibold mb-2">Welcome, Venue Owner 👋</h3>
+      <div id="summary-cards" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+            <!-- Cards will be populated by JS -->
+          </div>
       <p>Select a section from the sidebar to begin managing your venues.</p>
     </section>
   </main>
@@ -246,14 +249,45 @@
     document.getElementById('dashboard-content').innerHTML = `<p class="text-red-600">Failed to load reviews.</p>`;
   }
 }
+fetchDashboardSummary();
+
+function fetchDashboardSummary() {
+  fetch('http://localhost:5000/api/owner/dashboard', {
+    headers: { Authorization: `Bearer ${token}` }
+  })
+  .then(res => res.json())
+  .then(data => {
+    const summaryDiv = document.getElementById('summary-cards');
+    summaryDiv.innerHTML = `
+      ${renderCard("Venues", data.totalVenues, "bg-green-500")}
+      ${renderCard("Bookings", data.totalBookings, "bg-purple-500")}
+      ${renderCard("Reviews", data.totalReviews, "bg-orange-500")}
+    `;
+  })
+  .catch(err => {
+    console.error("Error fetching dashboard summary:", err);
+  });
+}
+
+function renderCard(label, value, color) {
+  return `
+    <div class="${color} text-white p-4 rounded shadow">
+      <h3 class="text-sm font-medium">${label}</h3>
+      <p class="text-2xl font-bold">${value}</p>
+    </div>
+  `;
+}
   function refreshDashboard() {
   const contentDiv = document.getElementById('dashboard-content');
   contentDiv.innerHTML = `
       <h3 class="text-lg font-semibold mb-2">Welcome, Venue Owner 👋</h3>
+      <div id="summary-cards" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+            <!-- Cards will be populated by JS -->
+          </div>
       <p>Select a section from the sidebar to begin managing your venues.</p>
   `;
+  fetchDashboardSummary();
   }   
-    
 
   </script>
 
