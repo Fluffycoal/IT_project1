@@ -121,5 +121,43 @@ router.get('/dashboard', authenticateUser, verifyOwner, async (req, res) => {
   res.json({ totalVenues, totalBookings, totalReviews });
 });
 
+const { Op } = require('sequelize');
+const { startOfMonth, endOfMonth, subMonths, format } = require('date-fns');
+
+// Route: Get monthly/weekly booking stats
+router.get('/stats/bookings', authenticateUser, verifyOwner, async (req, res) => {
+  const ownerId = req.user.id;
+  const type = req.query.range || 'monthly'; // "weekly" or "monthly"
+
+  try {
+    const venues = await Venue.findAll({ where: { ownerId }, attributes: ['id'] });
+    const venueIds = venues.map(v => v.id);
+
+    const bookings = await Booking.findAll({
+      where: { venueId: { [Op.in]: venueIds } },
+      attributes: ['id', 'createdAt', 'status']
+    });
+
+    const stats = {};
+
+    bookings.forEach(booking => {
+      const date = new Date(booking.createdAt);
+      const key = type === 'weekly'
+        ? format(date, 'yyyy-ww') // e.g. "2025-27"
+        : format(date, 'yyyy-MM'); // e.g. "2025-07"
+
+      if (!stats[key]) {
+        stats[key] = { total: 0, approved: 0, pending: 0, rejected: 0 };
+      }
+
+      stats[key].total++;
+      stats[key][booking.status]++;
+    });
+
+    res.json({ range: type, data: stats });
+  } catch (err) {
+    res.status(500).json({ message: 'Error fetching stats', error: err.message });
+  }
+});
 
 module.exports = router;
