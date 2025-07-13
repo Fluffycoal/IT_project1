@@ -92,8 +92,11 @@
   </div>
   <h2>Already have an account?</h2>
   <form id=loginForm>
-     <input type="email" id="email" placeholder="Email" style="width: 370px; height: 30px; font-size: 14px;" required />
-    <input type="password" id="password" placeholder="Password" style="width: 350px; height: 20px; font-size: 14px;" required />
+    <input type="email" id="email" placeholder="Email" style="width: 370px; height: 30px; font-size: 14px;" required />
+    <div class="password-wrapper">
+      <input type="password" id="password" placeholder="Password" style="width: 335px; height: 20px; font-size: 14px;" required />
+      <span class="toggle-password" onclick="togglePassword()" title="Show Password">👁️</span>
+    </div>
     <button type="submit" class="login-btn" style="width: 380px; height: 40px; font-size: 14px;" >Log in</button>
   </form>
   <div id="error-message"></div>

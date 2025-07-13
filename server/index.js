@@ -24,6 +24,7 @@ const reviewRoutes = require('./routes/review');
 const adminRoutes = require('./routes/admin');
 const path = require('path');
 const ownerRoutes = require('./routes/owner');
+const clientRoutes = require('./routes/client');
 
 // Use routes
 app.use('/api/auth', authRoutes);
@@ -33,6 +34,7 @@ app.use('/api/reviews', reviewRoutes);
 app.use('/api/admin', adminRoutes);
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/api/owner', ownerRoutes);
+app.use('/api/client', clientRoutes);
 
 // Connect to database and start server
 sequelize.authenticate()
