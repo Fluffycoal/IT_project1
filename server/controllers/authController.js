@@ -90,7 +90,7 @@ exports.forgotPassword = async (req, res) => {
     user.resetTokenExpires = resetTokenExpires;
     await user.save();
 
-    const resetLink = `http://localhost:5000/reset_password.html?token=${resetToken}&email=${encodeURIComponent(email)}`;
+    const resetLink = `http://localhost:5500/reset_password.html?token=${resetToken}&email=${encodeURIComponent(email)}`;
 
 
     const html = `
