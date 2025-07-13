@@ -142,31 +142,39 @@
 <div class="main">
     
 
-<div class="header">
-    <div class="icons">
-        <a href="client_home.html">
-            <img src="images/home icon.png" alt="Home Icon" style="width: 40px; height:90%; object-fit: cover;"/>
-        </a>
-    </div>
-  <div class="nav-buttons">
-    <button onclick="location.href='client_nearyou.html'">Near you</button>
-    <button onclick="location.href='client_discover.html'">Discover</button>
-    <button onclick="location.href='client_review.html'">Review</button>
+<div class="header" style="display: flex; justify-content: space-between; align-items: center; padding: 12px 20px; background-color: #fff; border-bottom: 1px solid #ccc;">
+
+  <!-- Left Icon (Home) -->
+  <div class="flex items-center">
+    <a href="client_home.html">
+      <img src="images/home icon.png" alt="Home Icon" style="width: 48px; height: 48px; object-fit: cover;">
+    </a>
   </div>
-  <div class="icons">
+
+  <!-- Center Navigation Buttons -->
+  <div class="nav-buttons" style="display: flex; gap: 12px;">
+    <button onclick="location.href='client_nearyou.html'" style="padding: 10px 16px; border: none; background-color: #ffe0cc; color: #ff5722; border-radius: 25px; font-weight: bold;">Near you</button>
+    <button onclick="location.href='client_discover.html'" style="padding: 10px 16px; border: none; background-color: #ffe0cc; color: #ff5722; border-radius: 25px; font-weight: bold;">Discover</button>
+    <button onclick="location.href='client_review.html'" style="padding: 10px 16px; border: none; background-color: #ffe0cc; color: #ff5722; border-radius: 25px; font-weight: bold;">Review</button>
+  </div>
+
+  <!-- Right Icons (Notifications & Profile) -->
+  <div class="flex items-center gap-3">
     <a href="notifications.html">
-    <img src="images/messages icon.png" alt="Messages Icon" style="width: 50px; height:100%; object-fit: cover;"/>
+      <img src="images/messages icon.png" alt="Notifications" style="width: 48px; height: 48px; object-fit: cover;">
     </a>
     <a href="client_profile.html">
-    <img src="images/Venue_wise_1_-removebg-preview.png" alt="Profile Icon" style="width: 50px; height:100%; object-fit: cover;" />
+      <img src="images/Venue_wise_1_-removebg-preview.png" alt="Profile" style="width: 48px; height: 48px; object-fit: cover; border-radius: 50%;">
     </a>
   </div>
+
 </div>
+
 
 
 <div style="margin-top: 20px;">
 <h1>My Reviews</h1>
-<p>You don't have any reviews now. <a href="review.html">Click here</a> to start on one</p>
+<p>You don't have any reviews now. <a href="client_review.html">Click here</a> to start on one</p>
 </div>
 
 </div>

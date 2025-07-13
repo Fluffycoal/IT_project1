@@ -1,295 +1,222 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Home Page</title>
-<style>
-  body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-  }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Book Venue</title>
+  <style>
+    :root {
+      --orange: #ff7a00;
+      --light-orange: #ffe7d1;
+      --dark-orange: #e65c00;
+    }
 
-  .header {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px 20px;
-    background-color: #fff;
-    border-bottom: 1px solid #ccc;
-  }
-  .logo {
-    font-weight: bold;
-  }
-  .logo a {
-    text-decoration: none;
-    color: #333;
-    font-size: 24px;
-  }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #fdfdfd;
+    }
 
-  .nav-buttons {
-    display: flex;
-    gap: 10px;
-  }
-  .nav-buttons button {
-    padding: 8px 12px;
-    border: 1px solid #ccc;
-    background-color: #fff;
-    border-radius: 50px;
-    cursor: pointer;
-  }
-  .nav-buttons button:hover {
-    background-color: #f0f0f0; 
-  }
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 24px;
+      background-color: white;
+      border-bottom: 1px solid #ddd;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+    }
 
-  .auth-links {
-    display: flex;
-    gap: 10px;
-    margin-left: 20px;
-  }
-  .auth-links a {
-      padding: 8px 20px;
+    .logo a {
+      font-weight: bold;
       text-decoration: none;
-      color: white;
-      background-color: #007bff; 
-      border-radius: 50px; 
+      color: var(--orange);
+      font-size: 26px;
+    }
+
+    .nav-buttons {
+      display: flex;
+      gap: 10px;
+    }
+
+    .nav-buttons button {
+      padding: 8px 16px;
+      background-color: var(--light-orange);
+      color: var(--orange);
       border: none;
-      display: inline-block;
-      transition: background-color 0.3s;
+      border-radius: 30px;
+      cursor: pointer;
+      font-weight: 500;
+      transition: background-color 0.3s ease;
     }
 
-    .auth-links a:hover {
-      background-color: #0056b3; 
+    .nav-buttons button:hover {
+      background-color: var(--orange);
+      color: white;
     }
 
-  .search-container {
-    display: flex;
-    justify-content: center;
-    margin: 20px;
-  }
-  .search-box {
-    width: 600px;
-    height: 40px;
-    padding: 8px;
-    border: 1px solid #888;
-    border-radius: 4px;
-  }
+    .icons img {
+      width: 40px;
+      height: 40px;
+      object-fit: cover;
+      border-radius: 50%;
+      margin-left: 10px;
+    }
 
-  .categories {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-  }
-  .categories button {
-    padding: 8px 12px;
-    border: 1px solid #ccc;
-    background-color: #fff;
-    color: #000;
-    border-radius: 50px;
-    cursor: pointer;
-  }
-  .categories button:hover{
-    background-color: #f0f0f0;
-  }
+    .container {
+      max-width: 500px;
+      margin: 40px auto;
+      padding: 30px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
 
-  .main {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
+    h2 {
+      text-align: center;
+      color: var(--orange);
+      margin-bottom: 20px;
+    }
 
-  .banner {
-    margin: 20px auto;
-    width: 600px;
-    height: 150px;
-    border: 1px solid #888;
-    position: relative;
-  }
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 15px;
+      margin-top: 5px;
+      margin-bottom: 20px;
+    }
 
-  .section {
-    width: 90%;
-    max-width: 650px;
-    margin: 20px 0;
-  }
-  .section h3 {
-    margin-bottom: 10px;
-    text-align: left;
-  }
+    button[type="submit"] {
+      background-color: var(--orange);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 15px;
+      font-weight: bold;
+    }
 
-  .container {
-    width: 400px;
-    margin: 50px auto;
-    border: 1px solid #ccc;
-    padding: 20px;
-    background-color: #fff;
-    box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
-  }
-
-  .arrow-left,
-  .arrow-right {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: rgba(255,255,255,0.8);
-    border: none;
-    font-size: 24px;
-    padding: 10px;
-    cursor: pointer;
-    border-radius: 50%;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-    z-index: 1;
-  }
-
-  .arrow-left {
-    left: 10px;
-  }
-  .arrow-right {
-    right: 10px;
-  }
-
-  .venue-list {
-    display: flex;
-    overflow-x: auto;
-    gap: 10px;
-    padding: 10px 0;
-    width: 100%;
-    scrollbar-width: none;
-  }
-  
-  .venue-list::-webkit-scrollbar {
-    display: none;
-  }
-
-  .venue-image {
-    width: 150px;
-    height: 150px;
-    object-fit: cover;
-    display: block;
-  }
-</style>
+    button[type="submit"]:hover {
+      background-color: var(--dark-orange);
+    }
+  </style>
 </head>
 <body>
 
-
-<div class="header">
-  <div class="logo"><a href="client_home.html">VENUE~WISE</a></div>
-  <div class="nav-buttons">
-    <button onclick="location.href='client_nearyou.html'">Near you</button>
-    <button onclick="location.href='client_discover.html'">Discover</button>
-    <button onclick="location.href='client_review.html'">Review</button>
+  <div class="header">
+    <div class="logo"><a href="client_home.html">VENUE~WISE</a></div>
+    <div class="nav-buttons">
+      <button onclick="location.href='client_nearyou.html'">Near You</button>
+      <button onclick="location.href='client_discover.html'">Discover</button>
+      <button onclick="location.href='client_review.html'">Review</button>
+    </div>
+    <div class="icons">
+      <a href="notifications.html">
+        <img src="images/messages icon.png" alt="Messages Icon" />
+      </a>
+      <a href="client_profile.html">
+        <img src="images/Venue_wise_1_-removebg-preview.png" alt="Profile Icon" />
+      </a>
+    </div>
   </div>
-  <div class="icons">
-    <a href="notifications.html">
-    <img src="images/messages icon.png" alt="Messages Icon" style="width: 50px; height:100%; object-fit: cover;"/>
-    </a>
-    <a href="client_profile.html">
-    <img src="images/Venue_wise_1_-removebg-preview.png" alt="Profile Icon" style="width: 50px; height:100%; object-fit: cover;" />
-    </a>
+
+  <div class="container">
+    <h2>Want to book a venue for an event?</h2>
+    <form id="bookingForm">
+      <label for="name">Your Name:</label>
+      <input type="text" id="name" name="name" required />
+
+      <label for="venueName">Venue Name:</label>
+      <input type="text" id="venueName" name="venueName" placeholder="e.g. Sunset Gardens" required />
+
+      <label for="phone">Phone Number:</label>
+      <input type="tel" id="phone" name="phone" required />
+
+      <label for="date">Event Date:</label>
+      <input type="date" id="date" name="date" required />
+
+      <label for="time">Event Time:</label>
+      <input type="time" id="time" name="time" required />
+
+      <label for="guests">Number of Guests:</label>
+      <input type="number" id="guests" name="guests" min="1" required />
+
+      <label for="requirements">Venue Requirements:</label>
+      <textarea id="requirements" name="requirements" rows="4" placeholder="Specify any needs or equipment..."></textarea>
+
+      <label for="notes">Additional Notes:</label>
+      <textarea id="notes" name="notes" rows="4" placeholder="Any other info or requests..."></textarea>
+
+      <button type="submit">Submit Booking Request</button>
+    </form>
   </div>
-</div>
 
+  <script>
+    document.getElementById('bookingForm').addEventListener('submit', async function (e) {
+      e.preventDefault();
 
-<div class="container">
+      const name = document.getElementById('name').value;
+      const venueName = document.getElementById('venueName').value;
+      const phone = document.getElementById('phone').value;
+      const eventDate = document.getElementById('date').value;
+      const eventTime = document.getElementById('time').value;
+      const guests = document.getElementById('guests').value;
+      const requirements = document.getElementById('requirements').value;
+      const notes = document.getElementById('notes').value;
 
-  <h2>Want to book a venue for an event?</h2>
-  <form>
-  <label for="name">Name:</label><br />
-  <input type="text" id="name" name="name" required /><br /><br />
+      const token = localStorage.getItem('token');
+      const user = JSON.parse(localStorage.getItem('user'));
+      const clientId = user?.id;
 
-  <label for="venue">Venue Name</label><br />
-  <input type="text" id="venue" name="venue" required /><br /><br />
-
-  <label for="phone">Phone Number:</label><br />
-  <input type="tel" id="phone" name="phone" required /><br /><br />
-
-  <label for="date">Event Date:</label><br />
-  <input type="date" id="date" name="date" required /><br /><br />
-
-  <label for="time">Event Time:</label><br />
-  <input type="time" id="time" name="time" required /><br /><br />
-
-  <label for="guests">Number of Guests:</label><br />
-  <input type="number" id="guests" name="guests" min="1" required /><br /><br />
-
-  <label for="requirements">Venue Requirements:</label><br />
-  <textarea id="requirements" name="requirements" rows="4" placeholder="Specify any needs or equipment..."></textarea><br /><br />
-
-  <label for="notes">Additional Notes:</label><br />
-  <textarea id="notes" name="notes" rows="4" placeholder="Any other info or requests..."></textarea><br /><br />
-
-  <button type="submit">Submit Booking Request</button>
-</form>
-
-</div>
-<script>
-  document.querySelector('form').addEventListener('submit', async function (e) {
-    e.preventDefault();
-
-    const name = document.getElementById('name').value;
-    const venueName = document.getElementById('venue').value;
-    const phone = document.getElementById('phone').value;
-    const eventDate = document.getElementById('date').value;
-    const eventTime = document.getElementById('time').value;
-    const guests = document.getElementById('guests').value;
-    const requirements = document.getElementById('requirements').value;
-    const notes = document.getElementById('notes').value;
-
-    // Optional: You can get token from localStorage if required
-    const token = localStorage.getItem('token');
-
-    try {
-      // First, fetch the venue ID by venue name (or handle it directly if known)
-      const venueRes = await fetch(`http://localhost:5000/api/venues/searchByName?name=${encodeURIComponent(venueName)}`);
-      if (!venueRes.ok) throw new Error('Venue not found');
-      const venue = await venueRes.json();
-
-      const bookingData = {
-        name,
-        phone,
-        eventDate,
-        eventTime,
-        guests,
-        requirements,
-        notes,
-        venueId: venue.id,
-      };
-
-      const response = await fetch('http://localhost:5000/api/bookings', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          ...(token ? { 'Authorization': `Bearer ${token}` } : {})
-        },
-        body: JSON.stringify(bookingData)
-      });
-
-      if (!response.ok) {
-        const err = await response.json();
-        alert('Booking failed: ' + err.message);
+      if (!clientId) {
+        alert("Client not logged in. Please log in again.");
         return;
       }
 
-      alert('Booking submitted successfully!');
-      document.querySelector('form').reset();
-    } catch (err) {
-      console.error('Error submitting booking:', err);
-      alert('An error occurred while booking.');
-    }
-  });
+      try {
+        const venueRes = await fetch(`http://localhost:5000/api/venues/name/${encodeURIComponent(venueName)}`);
+        if (!venueRes.ok) throw new Error('Venue not found');
+        const venue = await venueRes.json();
 
-  // Parse the query string
-  window.onload = function () {
-    const params = new URLSearchParams(window.location.search);
-    const venueName = params.get("venue");
+        const bookingData = {
+          clientId,
+          venueId: venue.id,
+          name,
+          phone,
+          eventDate,
+          eventTime,
+          guests,
+          requirements,
+          notes
+        };
 
-    if (venueName) {
-      const venueInput = document.getElementById("venue");
-      if (venueInput) {
-        venueInput.value = decodeURIComponent(venueName);
+        const response = await fetch('http://localhost:5000/api/bookings', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            ...(token ? { 'Authorization': `Bearer ${token}` } : {})
+          },
+          body: JSON.stringify(bookingData)
+        });
+
+        if (!response.ok) {
+          const err = await response.json();
+          alert('Booking failed: ' + err.message);
+          return;
+        }
+
+        alert('✅ Booking submitted successfully!');
+        document.getElementById('bookingForm').reset();
+      } catch (err) {
+        console.error('Error submitting booking:', err);
+        alert('❌ Error: ' + err.message);
       }
-    }
-  };
-</script>
+    });
+  </script>
 
 </body>
 </html>

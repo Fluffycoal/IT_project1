@@ -1,179 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Restaurants</title>
-<link rel="stylesheet" href="css/structure.css">
-<style>
-  body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-  }
-  .header {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px 20px;
-    background-color: #fff;
-    border-bottom: 1px solid #ccc;
-  }
-  .logo {
-    font-weight: bold;
-  }
-  .logo a {
-    text-decoration: none;
-    color: #333;
-    font-size: 24px;
-  }
-
-
-  .nav-buttons {
-    display: flex;
-    gap: 10px;
-  }
-  .nav-buttons button {
-    padding: 8px 12px;
-    border: 1px solid #ccc;
-    background-color: #fff;
-    border-radius: 50px;
-    cursor: pointer;
-  }
-  .nav-buttons button:hover {
-    background-color: #f0f0f0; 
-  }
-
-  .auth-links {
-    display: flex;
-    gap: 10px;
-    margin-left: 20px;
-  }
-  .auth-links a {
-      padding: 8px 20px;
-      text-decoration: none;
-      color: white;
-      background-color: #007bff; 
-      border-radius: 50px; 
-      border: none;
-      display: inline-block;
-      transition: background-color 0.3s;
-    }
-
-    .auth-links a:hover {
-      background-color: #0056b3; 
-    }
-
-  .search-container {
-    display: flex;
-    justify-content: center;
-    margin: 20px;
-  }
-  .search-box {
-    width: 600px;
-    height: 40px;
-    padding: 8px;
-    border: 1px solid #888;
-    border-radius: 4px;
-  }
-
-  .image-text-container {
-    display: flex;
-    align-items: center;
-    gap: 20px; 
-    margin-bottom: 20px; 
-  }
-
-  
-  .star-rating {
-    font-size: 20px; 
-    color: gold; 
-    margin-top: 8px; 
-  }
-
- 
-  .hotel-description {
-    max-width: 600px; 
-  }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Things To Do</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
+<body class="bg-gray-100 text-gray-800">
 
-<div class="header">
-  <div class="logo"><a href="client_home.html">VENUE~WISE</a></div>
-  <div class="nav-buttons">
-    <button onclick="location.href='client_nearyou.html'">Near you</button>
-    <button onclick="location.href='client_discover.html'">Discover</button>
-    <button onclick="location.href='client_review.html'">Review</button>
+  <!-- Header -->
+  <header class="bg-white shadow-md p-4 flex items-center justify-between relative">
+    <!-- Logo -->
+    <a href="client_home.html" class="text-2xl font-bold text-orange-600">VENUE~WISE</a>
+
+    <!-- Centered Nav Buttons -->
+    <div class="absolute left-1/2 transform -translate-x-1/2 flex gap-4">
+      <button onclick="location.href='client_nearyou.html'" class="px-4 py-2 bg-orange-100 text-orange-600 rounded-full hover:bg-orange-200">Near You</button>
+      <button onclick="location.href='client_discover.html'" class="px-4 py-2 bg-orange-100 text-orange-600 rounded-full hover:bg-orange-200">Discover</button>
+      <button onclick="location.href='client_review.html'" class="px-4 py-2 bg-orange-100 text-orange-600 rounded-full hover:bg-orange-200">Review</button>
+    </div>
+
+    <!-- Icons -->
+    <div class="flex items-center gap-4">
+      <a href="notifications.html">
+        <img src="images/messages icon.png" alt="Notifications" class="w-8 h-8">
+      </a>
+      <a href="client_profile.html">
+        <img src="images/Venue_wise_1_-removebg-preview.png" alt="Profile" class="w-8 h-8 rounded-full">
+      </a>
+    </div>
+  </header>
+
+  <!-- Page Title -->
+  <div class="text-center mt-10 mb-6">
+    <h1 class="text-3xl font-bold">Explore Fun Activities in Nairobi</h1>
+    <p class="text-gray-600 mt-2">Discover top-rated entertainment spots around the city</p>
   </div>
-  <div class="icons">
-    <a href="notifications.html">
-    <img src="images/messages icon.png" alt="Messages Icon" style="width: 50px; height:100%; object-fit: cover;"/>
-    </a>
-    <a href="client_profile.html">
-    <img src="images/Venue_wise_1_-removebg-preview.png" alt="Profile Icon" style="width: 50px; height:100%; object-fit: cover;" />
-    </a>
+
+  <!-- Activity Cards -->
+  <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+
+    <!-- Activity 1 -->
+    <div class="bg-white rounded-xl shadow hover:shadow-lg transition">
+      <img src="images/escape room.jpg" alt="Escape Room Kenya" class="rounded-t-xl h-48 w-full object-cover">
+      <div class="p-5">
+        <h2 class="text-xl font-semibold">Escape Room Kenya</h2>
+        <p class="text-sm text-gray-500">Ngong Road, Karen Village, Nairobi</p>
+        <p class="text-sm text-gray-500">Phone: 0796 110706</p>
+        <div class="text-yellow-500 mt-2">★★★★★</div>
+        <a href="client_bookingm.html?venue=Escape%20Room%20Kenya" class="inline-block mt-4 px-4 py-2 bg-orange-600 text-white rounded hover:bg-orange-700">Book Now</a>
+      </div>
+    </div>
+
+    <!-- Activity 2 -->
+    <div class="bg-white rounded-xl shadow hover:shadow-lg transition">
+      <img src="images/strikez bowling.jpg" alt="Strikez Bowling" class="rounded-t-xl h-48 w-full object-cover">
+      <div class="p-5">
+        <h2 class="text-xl font-semibold">Strikez Bowling Westgate</h2>
+        <p class="text-sm text-gray-500">Westgate Mall, Mwanzi Road, Nairobi</p>
+        <p class="text-sm text-gray-500">Phone: 0716 274798</p>
+        <div class="text-yellow-500 mt-2">★★★★★</div>
+        <a href="client_bookingm.html?venue=Strikez%20Bowling%20Westgate" class="inline-block mt-4 px-4 py-2 bg-orange-600 text-white rounded hover:bg-orange-700">Book Now</a>
+      </div>
+    </div>
+
+    <!-- Activity 3 -->
+    <div class="bg-white rounded-xl shadow hover:shadow-lg transition">
+      <img src="images/museum of illusions.jpg" alt="Museum of Illusions" class="rounded-t-xl h-48 w-full object-cover">
+      <div class="p-5">
+        <h2 class="text-xl font-semibold">Museum of Illusions</h2>
+        <p class="text-sm text-gray-500">Laxcon Court, Swaminarayan Road, Nairobi</p>
+        <p class="text-sm text-gray-500">Phone: 0719 413961</p>
+        <div class="text-yellow-500 mt-2">★★★★★</div>
+        <a href="client_bookingm.html?venue=Museum%20of%20Illusions" class="inline-block mt-4 px-4 py-2 bg-orange-600 text-white rounded hover:bg-orange-700">Book Now</a>
+      </div>
+    </div>
+
   </div>
-</div>
-<br><br>
-<div class="content">
-    <h3>Explore exciting activities in Nairobi</h3>
-    
-<div class="image-text-container">
-      <img src="images/escape room.jpg" class="venue-image" width="300" alt="">
-      <div class="activity-description">
-        <h4>Escape Room Kenya</h4>
-        <div class="star-rating">★★★★★</div>
-        <div class="activity-description">
-        <p>
-            Located in: Karen Village.
-            <br><br>
-            Address: Ngong Road, Nairobi
-            <br><br>
-            Phone number: 0796 110706
-            <br><br>
-            Want to book this place for an event? <a href="client_bookingm.html">Click here</a>
-        </p>
-        </div>
-      </div>
-    </div>
 
-    <div class="image-text-container">
-      <img src="images/strikez bowling.jpg" class="venue-image" width="300" alt="">
-      <div class="activity-description">
-        <h4>Strikez Bowling Westgate</h4>
-        <div class="star-rating">★★★★★</div>
-        <div class="activity-description">
-        <p>
-            Located in: Westgate Mall.
-            <br><br>
-            Address: Mwanzi Road, Nairobi
-            <br><br>
-            Phone number: 0716 274798
-            <br><br>
-            Want to book this place for an event? <a href="client_bookingm.html">Click here</a>
-        </p>
-        </div>
-      </div>
-    </div>
-
-    <div class="image-text-container">
-      <img src="images/museum of illusions.jpg" class="venue-image" width="300" alt="">
-      <div class="activity-description">
-        <h4>Museum of illusions</h4>
-        <div class="star-rating">★★★★★</div>
-        <div class="activity-description">
-        <p>
-            Located in: Laxcon Court and Plaza, Ground Floor 
-            <br><br>
-            Address: Swaminarayan Road, Nairobi
-            <br><br>
-            Phone number: 0719 413961
-            <br><br>
-            Want to book this place for an event? <a href="client_bookingm.html">Click here</a>
-        </p>
-        </div>
-      </div>
-    </div>
-</div>
 </body>
 </html>

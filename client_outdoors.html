@@ -1,178 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Outdoors</title>
-<link rel="stylesheet" href="css/structure.css">
-<style>
-  body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-  }
-  .header {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px 20px;
-    background-color: #fff;
-    border-bottom: 1px solid #ccc;
-  }
-  .logo {
-    font-weight: bold;
-  }
-  .logo a {
-    text-decoration: none;
-    color: #333;
-    font-size: 24px;
-  }
-
-  .nav-buttons {
-    display: flex;
-    gap: 10px;
-  }
-  .nav-buttons button {
-    padding: 8px 12px;
-    border: 1px solid #ccc;
-    background-color: #fff;
-    border-radius: 50px;
-    cursor: pointer;
-  }
-  .nav-buttons button:hover {
-    background-color: #f0f0f0; 
-  }
-
-  .auth-links {
-    display: flex;
-    gap: 10px;
-    margin-left: 20px;
-  }
-  .auth-links a {
-      padding: 8px 20px;
-      text-decoration: none;
-      color: white;
-      background-color: #007bff; 
-      border-radius: 50px; 
-      border: none;
-      display: inline-block;
-      transition: background-color 0.3s;
-    }
-
-    .auth-links a:hover {
-      background-color: #0056b3; 
-    }
-
-  .search-container {
-    display: flex;
-    justify-content: center;
-    margin: 20px;
-  }
-  .search-box {
-    width: 600px;
-    height: 40px;
-    padding: 8px;
-    border: 1px solid #888;
-    border-radius: 4px;
-  }
-  
-  .image-text-container {
-    display: flex;
-    align-items: center;
-    gap: 20px; 
-    margin-bottom: 20px; 
-  }
-
-  
-  .star-rating {
-    font-size: 20px; 
-    color: gold; 
-    margin-top: 8px; 
-  }
-
- 
-  .hotel-description {
-    max-width: 600px; 
-  }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Outdoors</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
+<body class="bg-gray-100 text-gray-800">
 
-<div class="header">
-  <div class="logo"><a href="client_home.html">VENUE~WISE</a></div>
-  <div class="nav-buttons">
-    <button onclick="location.href='client_nearyou.html'">Near you</button>
-    <button onclick="location.href='client_discover.html'">Discover</button>
-    <button onclick="location.href='client_review.html'">Review</button>
+  <!-- Header -->
+  <header class="bg-white shadow-md p-4 flex items-center justify-between relative">
+
+  <!-- Left: Logo (Adjusted for balance) -->
+  <div class="flex items-center gap-2">
+    <a href="client_home.html" class="text-2xl font-bold text-orange-600">VENUE~WISE</a>
   </div>
-  <div class="icons">
+
+  <!-- Center: Nav Buttons -->
+  <div class="absolute left-1/2 transform -translate-x-1/2 flex gap-4">
+    <button onclick="location.href='client_nearyou.html'" class="px-4 py-2 bg-orange-100 text-orange-600 rounded-full hover:bg-orange-200">Near You</button>
+    <button onclick="location.href='client_discover.html'" class="px-4 py-2 bg-orange-100 text-orange-600 rounded-full hover:bg-orange-200">Discover</button>
+    <button onclick="location.href='client_review.html'" class="px-4 py-2 bg-orange-100 text-orange-600 rounded-full hover:bg-orange-200">Review</button>
+  </div>
+
+  <!-- Right: Notification & Profile Icons -->
+  <div class="flex items-center gap-4">
     <a href="notifications.html">
-    <img src="images/messages icon.png" alt="Messages Icon" style="width: 50px; height:100%; object-fit: cover;"/>
+      <img src="images/messages icon.png" alt="Notifications" class="w-10 h-10">
     </a>
     <a href="client_profile.html">
-    <img src="images/Venue_wise_1_-removebg-preview.png" alt="Profile Icon" style="width: 50px; height:100%; object-fit: cover;" />
+      <img src="images/Venue_wise_1_-removebg-preview.png" alt="Profile" class="w-10 h-10 rounded-full">
     </a>
   </div>
-</div>
-<br><br>
-<div class="content">
-    <h3>Breathe fresh air at these stunning venues</h3>
-    
-<div class="image-text-container">
-      <img src="images/paradise lost.jpg" class="venue-image" width="300" alt="">
-      <div class="activity-description">
-        <h4>Paradise Lost</h4>
-        <div class="star-rating">★★★★★</div>
-        <div class="activity-description">
-        <p>
-            About: Picnic ground in Kiambu. Boat riding, bird watching, and a waterfall. 
-            <br><br>
-            Address: Glory Road, Kiambu
-            <br><br>
-            Phone number: 0110 022222
-            <br><br>
-            Want to book this place for an event? <a href="client_bookingm.html">Click here</a>
-        </p>
-        </div>
+
+</header>
+
+
+  <!-- Page Title -->
+  <div class="text-center mt-10 mb-6">
+    <h1 class="text-3xl font-bold">Breathe Fresh Air at These Stunning Venues</h1>
+    <p class="text-gray-600 mt-2">Enjoy nature, trails, and outdoor adventures</p>
+  </div>
+
+  <!-- Outdoor Venues -->
+  <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+
+    <!-- Paradise Lost -->
+    <div class="bg-white rounded-xl shadow hover:shadow-lg transition">
+      <img src="images/paradise lost.jpg" alt="Paradise Lost" class="rounded-t-xl h-48 w-full object-cover">
+      <div class="p-5">
+        <h2 class="text-xl font-semibold">Paradise Lost</h2>
+        <p class="text-sm text-gray-500 mt-1">Boat rides • Bird watching • Waterfall • Picnic</p>
+        <p class="text-sm text-gray-500 mt-1">Glory Road, Kiambu • 0110 022222</p>
+        <div class="text-yellow-500 mt-2">★★★★★</div>
+        <a href="client_bookingm.html?venue=Paradise%20Lost" class="inline-block mt-4 px-4 py-2 bg-orange-600 text-white rounded hover:bg-orange-700">Book Now</a>
       </div>
     </div>
 
-    <div class="image-text-container">
-      <img src="images/karura forest.jpg" class="venue-image" width="300" alt="">
-      <div class="activity-description">
-        <h4>Karura Forest</h4>
-        <div class="star-rating">★★★★★</div>
-        <div class="activity-description">
-        <p>
-            About: Urban forest in Nairobi. Walking, jogging, and cycling trails.
-            <br><br>
-            Address: Limuru Road, Nairobi
-            <br><br>
-            Want to book this place for an event? <a href="client_bookingm.html">Click here</a>
-        </p>
-        </div>
+    <!-- Karura Forest -->
+    <div class="bg-white rounded-xl shadow hover:shadow-lg transition">
+      <img src="images/karura forest.jpg" alt="Karura Forest" class="rounded-t-xl h-48 w-full object-cover">
+      <div class="p-5">
+        <h2 class="text-xl font-semibold">Karura Forest</h2>
+        <p class="text-sm text-gray-500 mt-1">Urban trails • Jogging • Cycling • Nature walks</p>
+        <p class="text-sm text-gray-500 mt-1">Limuru Road, Nairobi</p>
+        <div class="text-yellow-500 mt-2">★★★★★</div>
+        <a href="client_bookingm.html?venue=Karura%20Forest" class="inline-block mt-4 px-4 py-2 bg-orange-600 text-white rounded hover:bg-orange-700">Book Now</a>
       </div>
     </div>
 
-    <div class="image-text-container">
-      <img src="images/jump  by flying fox.jpg" class="venue-image" width="300" alt="">
-      <div class="activity-description">
-        <h4>Jump by Flying Fox</h4>
-        <div class="star-rating">★★★★★</div>
-        <div class="activity-description">
-        <p>
-            About: Adventure park in Nairobi. Ziplining, bungee jumping, and obstacle courses.       
-            <br><br>
-            Located in: The Hub, Karen 
-            <br><br>
-            Address: 09 Langata Rd, Nairobi
-            <br><br>
-            Phone number: 0715 969696
-            <br><br>
-            Want to book this place for an event? <a href="client_bookingm.html">Click here</a>
-        </p>
-        </div>
+    <!-- Jump by Flying Fox -->
+    <div class="bg-white rounded-xl shadow hover:shadow-lg transition">
+      <img src="images/jump  by flying fox.jpg" alt="Jump by Flying Fox" class="rounded-t-xl h-48 w-full object-cover">
+      <div class="p-5">
+        <h2 class="text-xl font-semibold">Jump by Flying Fox</h2>
+        <p class="text-sm text-gray-500 mt-1">Ziplining • Bungee • Obstacle Courses</p>
+        <p class="text-sm text-gray-500 mt-1">The Hub, Karen • 09 Langata Rd, Nairobi • 0715 969696</p>
+        <div class="text-yellow-500 mt-2">★★★★★</div>
+        <a href="client_bookingm.html?venue=Jump%20by%20Flying%20Fox" class="inline-block mt-4 px-4 py-2 bg-orange-600 text-white rounded hover:bg-orange-700">Book Now</a>
       </div>
     </div>
-</div>
+
+  </div>
+
 </body>
 </html>

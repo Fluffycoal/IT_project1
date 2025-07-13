@@ -1,193 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Restaurants</title>
-<link rel="stylesheet" href="css/structure.css">
-<style>
-  body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-  }
-  .header {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px 20px;
-    background-color: #fff;
-    border-bottom: 1px solid #ccc;
-  }
-  .logo {
-    font-weight: bold;
-  }
-  .logo a {
-    text-decoration: none;
-    color: #333;
-    font-size: 24px;
-  }
-
-  .nav-buttons {
-    display: flex;
-    gap: 10px;
-  }
-  .nav-buttons button {
-    padding: 8px 12px;
-    border: 1px solid #ccc;
-    background-color: #fff;
-    border-radius: 50px;
-    cursor: pointer;
-  }
-  .nav-buttons button:hover {
-    background-color: #f0f0f0; 
-  }
-
-  .auth-links {
-    display: flex;
-    gap: 10px;
-    margin-left: 20px;
-  }
-  .auth-links a {
-      padding: 8px 20px;
-      text-decoration: none;
-      color: white;
-      background-color: #007bff; 
-      border-radius: 50px; 
-      border: none;
-      display: inline-block;
-      transition: background-color 0.3s;
-    }
-
-    .auth-links a:hover {
-      background-color: #0056b3; 
-    }
-
-  .search-container {
-    display: flex;
-    justify-content: center;
-    margin: 20px;
-  }
-  .search-box {
-    width: 600px;
-    height: 40px;
-    padding: 8px;
-    border: 1px solid #888;
-    border-radius: 4px;
-  }
-
-  .image-text-container {
-    display: flex;
-    align-items: center;
-    gap: 20px; 
-    margin-bottom: 20px; 
-  }
-
-  
-  .star-rating {
-    font-size: 20px; 
-    color: gold; 
-    margin-top: 8px; 
-  }
-
- 
-  .hotel-description {
-    max-width: 600px; 
-  }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Restaurants</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
+<body class="bg-gray-100 text-gray-800">
 
-<div class="header">
-  <div class="logo"><a href="client_home.html">VENUE~WISE</a></div>
-  <div class="nav-buttons">
-    <button onclick="location.href='client_nearyou.html'">Near you</button>
-    <button onclick="location.href='client_discover.html'">Discover</button>
-    <button onclick="location.href='client_review.html'">Review</button>
+  <!-- Header -->
+  <header class="bg-white shadow-md p-4 flex items-center justify-between relative">
+
+  <!-- Left: Logo -->
+  <a href="client_home.html" class="text-2xl font-bold text-orange-600">VENUE~WISE</a>
+
+  <!-- Center: Nav Buttons (Absolutely centered) -->
+  <div class="absolute left-1/2 transform -translate-x-1/2 flex gap-4">
+    <button onclick="location.href='client_nearyou.html'" class="px-4 py-2 bg-orange-100 text-orange-600 rounded-full hover:bg-orange-200">Near You</button>
+    <button onclick="location.href='client_discover.html'" class="px-4 py-2 bg-orange-100 text-orange-600 rounded-full hover:bg-orange-200">Discover</button>
+    <button onclick="location.href='client_review.html'" class="px-4 py-2 bg-orange-100 text-orange-600 rounded-full hover:bg-orange-200">Review</button>
   </div>
-  <div class="icons">
+
+  <!-- Right: Icons -->
+  <div class="flex items-center gap-4">
     <a href="notifications.html">
-    <img src="images/messages icon.png" alt="Messages Icon" style="width: 50px; height:100%; object-fit: cover;"/>
+      <img src="images/messages icon.png" alt="Notifications" class="w-8 h-8">
     </a>
     <a href="client_profile.html">
-    <img src="images/Venue_wise_1_-removebg-preview.png" alt="Profile Icon" style="width: 50px; height:100%; object-fit: cover;" />
+      <img src="images/Venue_wise_1_-removebg-preview.png" alt="Profile" class="w-8 h-8 rounded-full">
     </a>
   </div>
-</div>
-<br><br>
-<div class="content">
-    <h3>Taste restaurants in Nairobi</h3>
+
+</header>
 
 
-    <div class="image-text-container">
-      <img src="images/shamba cafe.JPG" class="venue-image" width="300" alt="">
-      <div class="restaurant-description">
-        <h4>Shamba Cafe</h4>
-        <div class="star-rating">★★★★★</div>
-        <div class="restaurant-description">
-        <p>
-            Address: Loresho Ridge, Nairobi
-            <br><br>
-            Phone number: 0757 701080 
-            <br><br>
-            Want to book a table? <a href="client_bookingm.html?venue=Shamba%20Cafe">Click here</a>
-        </p>
-        </div>
+  <!-- Page Title -->
+  <div class="text-center mt-10 mb-6">
+    <h1 class="text-3xl font-bold">Taste Restaurants in Nairobi</h1>
+    <p class="text-gray-600 mt-2">Find and book the best dining spots in town</p>
+  </div>
+
+  <!-- Restaurant Cards -->
+  <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+
+    <!-- Restaurant Card -->
+    <div class="bg-white rounded-xl shadow hover:shadow-lg transition">
+      <img src="images/shamba cafe.JPG" alt="Shamba Cafe" class="rounded-t-xl h-48 w-full object-cover">
+      <div class="p-5">
+        <h2 class="text-xl font-semibold">Shamba Cafe</h2>
+        <p class="text-sm text-gray-500">Loresho Ridge, Nairobi</p>
+        <p class="text-sm text-gray-500">Phone: 0757 701080</p>
+        <div class="text-yellow-500 mt-2">★★★★★</div>
+        <a href="client_bookingm.html" class="inline-block mt-4 px-4 py-2 bg-orange-600 text-white rounded hover:bg-orange-700">Book a Table</a>
       </div>
     </div>
 
-
-<div class="image-text-container">
-      <img src="images/carnivore restaurant.jpg" class="venue-image" width="300" alt="">
-      <div class="restaurant-description">
-        <h4>The Carnivore Restaurant</h4>
-        <div class="star-rating">★★★★★</div>
-        <div class="restaurant-description">
-        <p>
-            Address: Langata Road, Nairobi
-            <br><br>
-            Phone number: 0722 204647
-            <br><br>
-            Want to book a table? <a href="client_bookingm.html?venue=The%20Carnivore%20Restaurant">Click here</a>
-        </p>
-        </div>
+    <div class="bg-white rounded-xl shadow hover:shadow-lg transition">
+      <img src="images/carnivore restaurant.jpg" alt="Carnivore" class="rounded-t-xl h-48 w-full object-cover">
+      <div class="p-5">
+        <h2 class="text-xl font-semibold">The Carnivore Restaurant</h2>
+        <p class="text-sm text-gray-500">Langata Road, Nairobi</p>
+        <p class="text-sm text-gray-500">Phone: 0722 204647</p>
+        <div class="text-yellow-500 mt-2">★★★★★</div>
+        <a href="client_bookingm.html?venue=The%20Carnivore%20Restaurant" class="inline-block mt-4 px-4 py-2 bg-orange-600 text-white rounded hover:bg-orange-700">Book a Table</a>
       </div>
     </div>
 
-    <div class="image-text-container">
-      <img src="images/harvest.jpg" class="venue-image" width="300" alt="">
-      <div class="restaurant-description">
-        <h4>Harvest Restaurant</h4>
-        <div class="star-rating">★★★★★</div>
-        <div class="restaurant-description">
-        <p>
-            Located in: Village Market.
-            <br><br>
-            Address: Limuru Road, Nairobi
-            <br><br>
-            Phone number: 0732 186215
-            <br><br>
-            Want to book a table? <a href="client_bookingm.html?venue=Harvest%20Restaurant">Click here</a>
-            </div>
-        </p>
+    <div class="bg-white rounded-xl shadow hover:shadow-lg transition">
+      <img src="images/harvest.jpg" alt="Harvest" class="rounded-t-xl h-48 w-full object-cover">
+      <div class="p-5">
+        <h2 class="text-xl font-semibold">Harvest Restaurant</h2>
+        <p class="text-sm text-gray-500">Limuru Road, Village Market</p>
+        <p class="text-sm text-gray-500">Phone: 0732 186215</p>
+        <div class="text-yellow-500 mt-2">★★★★★</div>
+        <a href="client_bookingm.html?venue=Harvest%20Restaurant" class="inline-block mt-4 px-4 py-2 bg-orange-600 text-white rounded hover:bg-orange-700">Book a Table</a>
       </div>
     </div>
-    <div class="image-text-container">
-      <img src="images/NSK.jpg" class="venue-image" width="300" alt="">
-      <div class="restaurant-description">
-        <h4>Nairobi Street Kitchen</h4>
-        <div class="star-rating">★★★★☆</div>
-        <div class="restaurant-description">
-        <p>
-            Address: Mpaka Road, Nairobi
-            <br><br>
-            Phone number: 0707 800800
-            <br><br>
-            Want to book a table? <a href="client_bookingm.html?venue=Nairobi%20Street%20Kitchen">Click here</a>
-        </p>
-        </div>
-        </div>
+
+    <div class="bg-white rounded-xl shadow hover:shadow-lg transition">
+      <img src="images/NSK.jpg" alt="NSK" class="rounded-t-xl h-48 w-full object-cover">
+      <div class="p-5">
+        <h2 class="text-xl font-semibold">Nairobi Street Kitchen</h2>
+        <p class="text-sm text-gray-500">Mpaka Road, Nairobi</p>
+        <p class="text-sm text-gray-500">Phone: 0707 800800</p>
+        <div class="text-yellow-500 mt-2">★★★★☆</div>
+        <a href="client_bookingm.html?venue=Nairobi%20Street%20Kitchen" class="inline-block mt-4 px-4 py-2 bg-orange-600 text-white rounded hover:bg-orange-700">Book a Table</a>
       </div>
-</div>
-  
+    </div>
+
+  </div>
+
 </body>
-</html>
+</html> 

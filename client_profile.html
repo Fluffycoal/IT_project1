@@ -1,176 +1,160 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Profile</title>
-<style>
-  body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    display: flex;
-  }
-
-
-  .sidebar {
-    width: 250px;
-    background: linear-gradient(to bottom, #f0826f, #dc4f3f); 
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    padding-top: 20px;
-    position: fixed; 
-    top: 0;
-    left: 0;
-    z-index: 1000;
-    box-shadow: 2px 0 5px rgba(0,0,0,0.2);
-  }
-
-  .sidebar h2 {
-    color: white;
-    text-align: center;
-    margin-bottom: 20px;
-    font-size: 20px;
-  }
-
-
-  .sidebar a {
-    display: block;
-    padding: 15px 20px;
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-    margin: 5px 0;
-  }
-  .sidebar a:hover {
-    background-color: #dc4f3f;
-  }
-
- 
-  .logout {
-    margin-top: auto;
-    padding: 15px 20px;
-    background-color: #ff4d4d;
-    color: white;
-    border: none;
-    cursor: pointer;
-    font-weight: bold;
-    margin: 20px;
-    border-radius: 4px;
-    width: calc(100% - 40px);
-    text-align: center;
-  }
-
-  
-  .main {
-    margin-left: 250px; /* Leave space for sidebar */
-    padding: 20px;
-    flex: 1;
-    width: calc(100% - 250px);
-  }
-
- 
-  .header {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px 20px;
-    background-color: #fff;
-    border-bottom: 1px solid #ccc;
-  }
-  .logo {
-    font-weight: bold;
-  }
-  .logo a {
-    text-decoration: none;
-    color: #333;
-    font-size: 24px;
-  }
-
-  .nav-buttons {
-    display: flex;
-    gap: 10px;
-  }
-  .nav-buttons button {
-    padding: 8px 12px;
-    border: 1px solid #ccc;
-    background-color: #fff;
-    border-radius: 50px;
-    cursor: pointer;
-  }
-  .nav-buttons button:hover {
-    background-color: #f0f0f0; 
-  }
-
-  .auth-links {
-    display: flex;
-    gap: 10px;
-    margin-left: 20px;
-  }
-  .auth-links a {
-      padding: 8px 20px;
-      text-decoration: none;
-      color: white;
-      background-color: #007bff; 
-      border-radius: 50px; 
-      border: none;
-      display: inline-block;
-      transition: background-color 0.3s;
-  }
-
-  .auth-links a:hover {
-    background-color: #0056b3; 
-  }
-  .logout{
-    background-color: #dd3131;
-  }
-
- 
-
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Client Profile</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
+<body class="flex bg-gray-100 min-h-screen text-gray-800">
 
-
-<div class="sidebar">
-  <h2><a href="client_home.html">VENUE~WISE</a></h2>
-  <a href="client_bookings.html">My Bookings</a>
-  <a href="client_reviews.html">My Reviews</a>
-  <a href="notifications.html">Notifications</a>
-    <button class="logout" onclick="location.href='home.html'">Logout</button>
-</div>
-
-
-<div class="main">
-    
-
-<div class="header">
-    <div class="icons">
-        <a href="client_home.html">
-            <img src="images/home icon.png" alt="Home Icon" style="width: 40px; height:90%; object-fit: cover;"/>
-        </a>
+  <!-- Sidebar -->
+  <aside class="w-64 bg-orange-600 text-white flex flex-col p-6">
+    <h1 class="text-2xl font-bold mb-10">VENUE<span class="text-yellow-200">WISE</span></h1>
+    <h2 onclick="refreshProfile()" class="text-2xl font-bold mb-8 cursor-pointer hover:underline">Client Panel</h2>
+    <nav class="flex flex-col space-y-4">
+      <button onclick="loadSection('myBookings')" class="hover:bg-orange-500 px-3 py-2 rounded text-left">My Bookings</button>
+      <button onclick="loadSection('myReviews')" class="hover:bg-orange-500 px-3 py-2 rounded text-left">My Reviews</button>
+      <button onclick="loadSection('profileSettings')" class="hover:bg-orange-500 px-3 py-2 rounded text-left">Profile Settings</button>
+    </nav>
+    <div class="mt-auto pt-6 border-t border-orange-400">
+      <p class="text-sm mb-2">Logged in as <span class="font-semibold">Client</span></p>
+      <button onclick="logout()" class="bg-red-500 hover:bg-red-600 px-3 py-2 rounded w-full">Logout</button>
     </div>
-  <div class="nav-buttons">
-    <button onclick="location.href='client_nearyou.html'">Near you</button>
-    <button onclick="location.href='client_discover.html'">Discover</button>
-    <button onclick="location.href='client_review.html'">Review</button>
-  </div>
-  <div class="icons">
-    <a href="notifications.html">
-    <img src="images/messages icon.png" alt="Messages Icon" style="width: 50px; height:100%; object-fit: cover;"/>
-    </a>
-    <a href="client_profile.html">
-    <img src="images/Venue_wise_1_-removebg-preview.png" alt="Profile Icon" style="width: 50px; height:100%; object-fit: cover;" />
-    </a>
-  </div>
-</div>
+  </aside>
 
+  <!-- Main Content -->
+  <main class="flex-1 flex flex-col">
+    <!-- Top Bar -->
+    <header class="bg-white shadow p-4 flex justify-between items-center">
+      <h2 class="text-xl font-semibold text-orange-700">Client Profile</h2>
+      <div class="relative">
+        <button onclick="toggleDropdown()" class="w-10 h-10 rounded-full overflow-hidden border-2 border-orange-400">
+          <img id="avatarImg" src="" alt="Avatar" class="w-full h-full object-cover">
+        </button>
+        <div id="profileDropdown" class="absolute right-0 mt-2 w-48 bg-white rounded shadow-lg hidden z-50">
+          <div class="p-4 border-b border-gray-200">
+            <p id="profileName" class="text-sm font-medium text-gray-800">Loading...</p>
+            <p id="profileEmail" class="text-xs text-gray-500">Loading...</p>
+          </div>
+          <button onclick="logout()" class="block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-gray-100">Logout</button>
+        </div>
+      </div>
+    </header>
 
-<div style="margin-top: 20px;">
-<h1>Welcome to Your Profile</h1>
-<p>Click on any of the tabs in the sidebar to get started</p>
-</div>
+    <!-- Dynamic Content -->
+    <section class="p-6 overflow-y-auto flex-1" id="profile-content">
+      <h3 class="text-lg font-semibold mb-2">Welcome, Client 👋</h3>
+      <p>Select an option from the sidebar to view your profile info, bookings, or reviews.</p>
+    </section>
+  </main>
 
-</div>
+  <!-- JS -->
+  <script>
+    const token = localStorage.getItem('token');
+    if (!token) {
+      window.location.href = 'login.html';
+    }
+
+    const payload = JSON.parse(atob(token.split('.')[1]));
+    if (payload.role !== 'client') {
+      alert('Access denied: Clients only');
+      window.location.href = 'login.html';
+    }
+
+    document.getElementById('profileName').textContent = payload.username || 'Client';
+    document.getElementById('profileEmail').textContent = payload.email;
+    document.getElementById('avatarImg').src = `https://i.pravatar.cc/100?u=${payload.email}`;
+
+    function toggleDropdown() {
+      document.getElementById('profileDropdown').classList.toggle('hidden');
+    }
+
+    function logout() {
+      localStorage.clear();
+      window.location.href = 'login.html';
+    }
+
+    function refreshProfile() {
+      const content = `
+        <h3 class="text-lg font-semibold mb-4">Welcome, ${payload.username}</h3>
+        <p>This is your client dashboard. Use the sidebar to navigate your bookings, reviews, or update your profile.</p>
+      `;
+      document.getElementById('profile-content').innerHTML = content;
+    }
+
+    function loadSection(section) {
+      if (section === 'myBookings') {
+        loadBookings();
+      } else if (section === 'myReviews') {
+        loadReviews();
+      } else if (section === 'profileSettings') {
+        loadSettings();
+      }
+    }
+
+    async function loadBookings() {
+      document.getElementById('profile-content').innerHTML = `<p>Loading your bookings...</p>`;
+      const res = await fetch(`http://localhost:5000/api/client/bookings`, {
+        headers: { 'Authorization': `Bearer ${token}` }
+      });
+      const bookings = await res.json();
+
+      const html = `
+        <h2 class="text-xl font-semibold mb-4">My Bookings</h2>
+        <div class="space-y-4">
+          ${bookings.length === 0
+            ? '<p class="text-gray-500">No bookings yet.</p>'
+            : bookings.map(b => `
+              <div class="bg-white p-4 rounded shadow">
+                <p><strong>Venue:</strong> ${b.Venue?.name}</p>
+                <p><strong>Date:</strong> ${b.eventDate}</p>
+                <p><strong>Status:</strong> ${b.status}</p>
+              </div>
+            `).join('')}
+        </div>
+      `;
+      document.getElementById('profile-content').innerHTML = html;
+    }
+
+    async function loadReviews() {
+      document.getElementById('profile-content').innerHTML = `<p>Loading your reviews...</p>`;
+      const res = await fetch(`http://localhost:5000/api/client/reviews`, {
+        headers: { 'Authorization': `Bearer ${token}` }
+      });
+      const reviews = await res.json();
+
+      const html = `
+        <h2 class="text-xl font-semibold mb-4">My Reviews</h2>
+        <div class="space-y-4">
+          ${reviews.length === 0
+            ? '<p class="text-gray-500">You have not left any reviews.</p>'
+            : reviews.map(r => `
+              <div class="bg-white p-4 rounded shadow">
+                <p><strong>Venue:</strong> ${r.Venue?.name}</p>
+                <p><strong>Rating:</strong> ${'⭐'.repeat(r.rating)}</p>
+                <p><strong>Comment:</strong> ${r.comment || 'No comment'}</p>
+              </div>
+            `).join('')}
+        </div>
+      `;
+      document.getElementById('profile-content').innerHTML = html;
+    }
+
+    function loadSettings() {
+      const html = `
+        <h2 class="text-xl font-semibold mb-4">Profile Settings</h2>
+        <div class="bg-white p-4 rounded shadow space-y-4 max-w-md">
+          <p><strong>Name:</strong> ${payload.username}</p>
+          <p><strong>Email:</strong> ${payload.email}</p>
+          <button class="bg-blue-500 text-white px-4 py-2 rounded" onclick="alert('Profile editing coming soon')">Edit Profile</button>
+        </div>
+      `;
+      document.getElementById('profile-content').innerHTML = html;
+    }
+
+    refreshProfile(); // Default on load
+  </script>
 
 </body>
 </html>

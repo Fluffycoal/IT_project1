@@ -60,7 +60,7 @@ router.get('/name/:venueName', async (req, res) => {
   try {
     const venue = await Venue.findOne({
       where: {
-        name: req.params.venueName,
+        name: {[Op.like]: req.params.venueName},
         status: 'approved' // Optional: Only fetch approved venues
       }
     });

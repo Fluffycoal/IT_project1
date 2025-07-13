@@ -1,328 +1,149 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Discover</title>
-    <style>
-     body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-        background-color: #f9f9f9;
-     }
-
-     .header {
-        display: flex;
-        justify-content: space-between;
-        padding: 10px 20px;
-        background-color: #fff;
-        border-bottom: 1px solid #ccc;
-     }
-
-     .logo {
-        font-weight: bold;
-     }
-
-     .logo a {
-        text-decoration: none;
-        color: #333;
-        font-size: 24px;
-     }
-
-  .nav-buttons {
-    display: flex;
-    gap: 10px;
-  }
-  .nav-buttons button {
-    padding: 8px 12px;
-    border: 1px solid #ccc;
-    background-color: #fff;
-    border-radius: 50px;
-    cursor: pointer;
-  }
-  .nav-buttons button:hover {
-    background-color: #f0f0f0; 
-  }
-
-  .auth-links {
-    display: flex;
-    gap: 10px;
-    margin-left: 20px;
-  }
-  .auth-links a {
-      padding: 8px 20px;
-      text-decoration: none;
-      color: white;
-      background-color: #007bff; 
-      border-radius: 50px; 
-      border: none;
-      display: inline-block;
-      transition: background-color 0.3s;
-    }
-
-    .auth-links a:hover {
-      background-color: #0056b3; 
-    }
-
-  .search-container {
-    display: flex;
-    justify-content: center;
-    margin: 20px;
-  }
-  .search-box {
-    width: 600px;
-    height: 40px;
-    padding: 8px;
-    border: 1px solid #888;
-    border-radius: 4px;
-  }  
-     .venue-details {
-        max-width: 800px;
-        margin: 20px auto;
-        background: #fff;
-        padding: 20px;
-        border-radius: 8px;
-        box-shadow: 0 0 10px rgba(0,0,0,0.1);
-     }
-
-     .venue-title {
-        font-size: 28px;
-        margin-bottom: 10px;
-     }
-
-     .venue-info {
-        margin-bottom: 20px;
-     }
-
-     .reviews {
-        margin-top: 30px;
-     }
-
-     .review {
-        border-top: 1px solid #eee;
-        padding: 10px 0;
-     }
-
-     .review:first-child {
-        border-top: none;
-     }
-
-     .review-top {
-        font-weight: bold;
-        margin-bottom: 5px;
-     }
-
-     /* Star rating */
-     .stars {
-        color: #ffc107; 
-     }
-     .content {
-        text-align: center;
-        margin: 20px;
-     }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Discover</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
+<body class="bg-gray-100 text-gray-800">
 
-<div class="header">
-  <div class="logo"><a href="client_home.html">VENUE~WISE</a></div>
-  <div class="nav-buttons">
-    <button onclick="location.href='client_nearyou.html'">Near you</button>
-    <button onclick="location.href='client_discover.html'">Discover</button>
-    <button onclick="location.href='client_review.html'">Review</button>
-  </div>
-  <div class="icons">
-    <a href="notifications.html">
-    <img src="images/messages icon.png" alt="Messages Icon" style="width: 50px; height:100%; object-fit: cover;"/>
-    </a>
-    <a href="client_profile.html">
-    <img src="images/Venue_wise_1_-removebg-preview.png" alt="Profile Icon" style="width: 50px; height:100%; object-fit: cover;" />
-    </a>
-  </div>
-</div>
+  <!-- Header -->
+  <header class="bg-white shadow-md p-4 flex items-center justify-between relative">
+    <!-- Logo -->
+    <a href="client_home.html" class="text-2xl font-bold text-orange-600">VENUE~WISE</a>
 
-<div class="content">
-<h2>See what others have to say...</h2>
-</div>
-
-<div class="venue-details">
-  <div class="venue-title">Shamba Cafe</div>
-  <div class="venue-info">
-    <p><strong>Rating:</strong> ★★★★★ (5.0 out of 5)</p>
-    <p><strong>Address:</strong> Loresho Ridge, Nairobi</p>
-    <p><strong>Phone number:</strong> 0757 701080</p>
-  </div>
-
- 
-  <div class="reviews">
-    <h3>Top Reviews</h3>
-    <div class="review">
-      <div class="review-top">"Amazing atmosphere and fresh farm-to-table food. Perfect spot for a relaxing lunch." — Grace M.</div>
-      <div class="stars">★★★★★</div>
-    </div>
-    <div class="review">
-      <div class="review-top">"Loved the outdoor setting and the friendly staff. Will definitely visit again." — Daniel K.</div>
-      <div class="stars">★★★★★</div>
-    </div>
-    <div class="review">
-      <div class="review-top">"The coffee was excellent, and the vibe is so peaceful. Highly recommend!" — Aisha S.</div>
-      <div class="stars">★★★★★</div>
+    <!-- Centered Nav Buttons -->
+    <div class="absolute left-1/2 transform -translate-x-1/2 flex gap-4">
+      <button onclick="location.href='client_nearyou.html'" class="px-4 py-2 bg-orange-100 text-orange-600 rounded-full hover:bg-orange-200">Near You</button>
+      <button onclick="location.href='client_discover.html'" class="px-4 py-2 bg-orange-100 text-orange-600 rounded-full hover:bg-orange-200">Discover</button>
+      <button onclick="location.href='client_review.html'" class="px-4 py-2 bg-orange-100 text-orange-600 rounded-full hover:bg-orange-200">Review</button>
     </div>
 
-    <h3>Average Ratings</h3>
-    <p><strong>Ratings Breakdown:</strong></p>
-    <ul>
-      <li>5 Stars: 70 reviews (82%)</li>
-      <li>4 Stars: 10 reviews (12%)</li>
-      <li>3 Stars: 3 reviews (3%)</li>
-      <li>2 Stars: 1 review (1%)</li>
-      <li>1 Star: 1 review (1%)</li>
-    </ul>
-  </div>
-</div>
+    <!-- Icons -->
+    <div class="flex items-center gap-4">
+      <a href="notifications.html">
+        <img src="images/messages icon.png" alt="Notifications" class="w-8 h-8">
+      </a>
+      <a href="client_profile.html">
+        <img src="images/Venue_wise_1_-removebg-preview.png" alt="Profile" class="w-8 h-8 rounded-full">
+      </a>
+    </div>
+  </header>
 
-<div class="venue-details">
-  <div class="venue-title">Karura Forest</div>
-  <div class="venue-info">
-    <p><strong>Rating:</strong> ★★★★★ (5.0 out of 5)</p>
-    <p><strong>Address:</strong> Limuru Road, Nairobi</p>
-    <p><strong>Phone number:</strong> +254 123 456 789</p>
+  <!-- Title -->
+  <div class="text-center mt-10 mb-6">
+    <h1 class="text-3xl font-bold text-black-000">See What Others Have to Say</h1>
+    <p class="text-gray-600 mt-2">Explore the most loved venues in Nairobi</p>
   </div>
 
-  <div class="reviews">
-    <h3>Top Reviews</h3>
-    <div class="review">
-      <div class="review-top">"Beautiful natural environment with well-maintained trails. Perfect for a quick escape into nature." — Sarah N.</div>
-      <div class="stars">★★★★★</div>
-    </div>
-    <div class="review">
-      <div class="review-top">"Great for jogging and cycling, with scenic views all around. Will definitely visit again." — Michael K.</div>
-      <div class="stars">★★★★★</div>
-    </div>
-    <div class="review">
-      <div class="review-top">"Peaceful atmosphere and lush greenery. Highly recommended for outdoor lovers." — Emily R.</div>
-      <div class="stars">★★★★★</div>
+  <!-- Venue Cards -->
+  <div class="max-w-5xl mx-auto px-4 space-y-10 mb-16">
+
+    <!-- Venue -->
+    <div class="bg-white rounded-xl shadow p-6">
+      <h2 class="text-2xl font-semibold text-orange-600">Shamba Cafe</h2>
+      <p class="text-gray-600 mt-1">Loresho Ridge, Nairobi | Phone: 0757 701080</p>
+      <p class="mt-2 text-yellow-500 text-xl">★★★★★ (5.0)</p>
+
+      <div class="mt-4">
+        <h3 class="font-semibold mb-2">Top Reviews</h3>
+        <div class="space-y-3">
+          <p>"Amazing atmosphere and fresh farm-to-table food." — <em>Grace M.</em></p>
+          <p>"Loved the outdoor setting and friendly staff." — <em>Daniel K.</em></p>
+        </div>
+        <h3 class="font-semibold mt-4 mb-2">Average Ratings</h3>
+        <ul class="list-disc pl-5 text-sm text-gray-700">
+          <li>5 Stars: 70 (82%)</li>
+          <li>4 Stars: 10 (12%)</li>
+          <li>3 Stars: 3 (3%)</li>
+          <li>2 Stars: 1 (1%)</li>
+          <li>1 Star: 1 (1%)</li>
+        </ul>
+      </div>
     </div>
 
-    <h3>Average Ratings</h3>
-    <p><strong>Ratings Breakdown:</strong></p>
-    <ul>
-      <li>5 Stars: 45 reviews (85%)</li>
-      <li>4 Stars: 7 reviews (13%)</li>
-      <li>3 Stars: 1 review (2%)</li>
-      <li>2 Stars: 0 reviews (0%)</li>
-      <li>1 Star: 0 reviews (0%)</li>
-    </ul>
+    <!-- Repeat structure for other venues -->
+
+    <div class="bg-white rounded-xl shadow p-6">
+      <h2 class="text-2xl font-semibold text-orange-600">Karura Forest</h2>
+      <p class="text-gray-600 mt-1">Limuru Road, Nairobi | Phone: +254 123 456 789</p>
+      <p class="mt-2 text-yellow-500 text-xl">★★★★★ (5.0)</p>
+
+      <div class="mt-4">
+        <h3 class="font-semibold mb-2">Top Reviews</h3>
+        <div class="space-y-3">
+          <p>"Peaceful and perfect for a nature escape." — <em>Sarah N.</em></p>
+          <p>"Great for jogging and fresh air." — <em>Michael K.</em></p>
+        </div>
+        <h3 class="font-semibold mt-4 mb-2">Average Ratings</h3>
+        <ul class="list-disc pl-5 text-sm text-gray-700">
+          <li>5 Stars: 45 (85%)</li>
+          <li>4 Stars: 7 (13%)</li>
+          <li>3 Stars: 1 (2%)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-white rounded-xl shadow p-6">
+      <h2 class="text-2xl font-semibold text-orange-600">Strikez Bowling Westgate</h2>
+      <p class="text-gray-600 mt-1">Westgate Mall, Mwanzi Road, Nairobi | Phone: 0716 274798</p>
+      <p class="mt-2 text-yellow-500 text-xl">★★★★★</p>
+
+      <div class="mt-4">
+        <h3 class="font-semibold mb-2">Top Reviews</h3>
+        <div class="space-y-3">
+          <p>"Fun for groups, friendly staff!" — <em>James P.</em></p>
+          <p>"Clean lanes, great vibe!" — <em>Lucy K.</em></p>
+        </div>
+        <h3 class="font-semibold mt-4 mb-2">Average Ratings</h3>
+        <ul class="list-disc pl-5 text-sm text-gray-700">
+          <li>5 Stars: 50 (90%)</li>
+          <li>4 Stars: 5 (9%)</li>
+          <li>3 Stars: 1 (1%)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-white rounded-xl shadow p-6">
+      <h2 class="text-2xl font-semibold text-orange-600">Harvest Restaurant</h2>
+      <p class="text-gray-600 mt-1">Village Market, Limuru Road, Nairobi | Phone: 0732 186215</p>
+      <p class="mt-2 text-yellow-500 text-xl">★★★★★</p>
+
+      <div class="mt-4">
+        <h3 class="font-semibold mb-2">Top Reviews</h3>
+        <div class="space-y-3">
+          <p>"Elegant and peaceful ambiance." — <em>Maria T.</em></p>
+          <p>"Delicious food and service." — <em>John D.</em></p>
+        </div>
+        <h3 class="font-semibold mt-4 mb-2">Average Ratings</h3>
+        <ul class="list-disc pl-5 text-sm text-gray-700">
+          <li>5 Stars: 40 (85%)</li>
+          <li>4 Stars: 7 (15%)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-white rounded-xl shadow p-6">
+      <h2 class="text-2xl font-semibold text-orange-600">Radisson Blu Hotel</h2>
+      <p class="text-gray-600 mt-1">Elgon Road, Nairobi | Phone: 0709 810000</p>
+      <p class="mt-2 text-yellow-500 text-xl">★★★★★</p>
+
+      <div class="mt-4">
+        <h3 class="font-semibold mb-2">Top Reviews</h3>
+        <div class="space-y-3">
+          <p>"Luxury stay with great dining." — <em>Linda M.</em></p>
+          <p>"Excellent service and location!" — <em>James K.</em></p>
+        </div>
+        <h3 class="font-semibold mt-4 mb-2">Average Ratings</h3>
+        <ul class="list-disc pl-5 text-sm text-gray-700">
+          <li>5 Stars: 60 (90%)</li>
+          <li>4 Stars: 7 (10%)</li>
+        </ul>
+      </div>
+    </div>
+
   </div>
-</div>
-
-<div class="venue-details">
-  <div class="venue-title">Strikez Bowling Westgate</div>
-  <div class="venue-info">
-    <p><strong>Rating:</strong> ★★★★★</p>
-    <p><strong>Located in:</strong> Westgate Mall</p>
-    <p><strong>Address:</strong> Mwanzi Road, Nairobi</p>
-    <p><strong>Phone number:</strong> 0716 274798</p>
-  </div>
-
-  <div class="reviews">
-    <h3>Top Reviews</h3>
-    <div class="review">
-      <div class="review-top">"Great atmosphere and fun for all ages. Perfect spot for a group outing." — James P.</div>
-      <div class="stars">★★★★★</div>
-    </div>
-    <div class="review">
-      <div class="review-top">"The staff was friendly and the lanes were well-maintained. Will visit again." — Lucy K.</div>
-      <div class="stars">★★★★★</div>
-    </div>
-    <div class="review">
-      <div class="review-top">"Excellent facilities and a lively vibe. Highly recommend for a fun day out." — David S.</div>
-      <div class="stars">★★★★★</div>
-    </div>
-
-    <h3>Average Ratings</h3>
-    <p><strong>Ratings Breakdown:</strong></p>
-    <ul>
-      <li>5 Stars: 50 reviews (90%)</li>
-      <li>4 Stars: 5 reviews (9%)</li>
-      <li>3 Stars: 1 review (1%)</li>
-      <li>2 Stars: 0 reviews (0%)</li>
-      <li>1 Star: 0 reviews (0%)</li>
-    </ul>
-  </div>
-</div>
-
-<div class="venue-details">
-  <div class="venue-title">Harvest Restaurant</div>
-  <div class="venue-info">
-    <p><strong>Rating:</strong> ★★★★★</p>
-    <p><strong>Located in:</strong> Village Market</p>
-    <p><strong>Address:</strong> Limuru Road, Nairobi</p>
-    <p><strong>Phone number:</strong> 0732 186215</p>
-  </div>
-
-  <div class="reviews">
-    <h3>Top Reviews</h3>
-    <div class="review">
-      <div class="review-top">"Elegant decor and delicious food. Perfect for a special occasion." — Maria T.</div>
-      <div class="stars">★★★★★</div>
-    </div>
-    <div class="review">
-      <div class="review-top">"Great ambiance and attentive service. Highly recommended." — John D.</div>
-      <div class="stars">★★★★★</div>
-    </div>
-    <div class="review">
-      <div class="review-top">"Lovely outdoor seating and a peaceful atmosphere." — Grace L.</div>
-      <div class="stars">★★★★★</div>
-    </div>
-
-    <h3>Average Ratings</h3>
-    <p><strong>Ratings Breakdown:</strong></p>
-    <ul>
-      <li>5 Stars: 40 reviews (85%)</li>
-      <li>4 Stars: 7 reviews (15%)</li>
-      <li>3 Stars: 0 reviews (0%)</li>
-      <li>2 Stars: 0 reviews (0%)</li>
-      <li>1 Star: 0 reviews (0%)</li>
-    </ul>
-  </div>
-</div>
-
-<div class="venue-details">
-  <div class="venue-title">Radisson Blu Hotel</div>
-  <div class="venue-info">
-    <p><strong>Rating:</strong> ★★★★★</p>
-    <p><strong>Address:</strong> Elgon Road, Nairobi</p>
-    <p><strong>Phone number:</strong> 0709 810000</p>
-  </div>
-
-  <div class="reviews">
-    <h3>Top Reviews</h3>
-    <div class="review">
-      <div class="review-top">"Luxurious rooms and excellent service. Ideal for business trips and leisure." — Linda M.</div>
-      <div class="stars">★★★★★</div>
-    </div>
-    <div class="review">
-      <div class="review-top">"Fantastic amenities and beautiful lobby. Will definitely return." — James K.</div>
-      <div class="stars">★★★★★</div>
-    </div>
-    <div class="review">
-      <div class="review-top">"Great dining options and friendly staff. Highly recommend!" — Sarah W.</div>
-      <div class="stars">★★★★★</div>
-    </div>
-
-    <h3>Average Ratings</h3>
-    <p><strong>Ratings Breakdown:</strong></p>
-    <ul>
-      <li>5 Stars: 60 reviews (90%)</li>
-      <li>4 Stars: 7 reviews (10%)</li>
-      <li>3 Stars: 0 reviews (0%)</li>
-      <li>2 Stars: 0 reviews (0%)</li>
-      <li>1 Star: 0 reviews (0%)</li>
-    </ul>
-  </div>
-</div>
 
 </body>
 </html>
