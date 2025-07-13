@@ -11,7 +11,7 @@
   <!-- Sidebar -->
   <aside class="w-64 bg-orange-600 text-white flex flex-col p-6">
     <a href="client_home.html">
-    <h1 class="text-2xl font-bold mb-10"> VENUE<span class="text-yellow-200">WISE</span></h1>
+    <h1 class="text-2xl font-bold mb-10"> VENUE<span class="text-yellow-200">~WISE</span></h1>
     </a>
     <h2 onclick="refreshProfile()" class="text-2xl font-bold mb-8 cursor-pointer hover:underline">Client Panel</h2>
     <nav class="flex flex-col space-y-4">
@@ -79,7 +79,7 @@
 
     function refreshProfile() {
       const content = `
-        <h3 class="text-lg font-semibold mb-4">Welcome, ${payload.username}</h3>
+        <h3 class="text-lg font-semibold mb-4">Welcome, Client 👋</h3>
         <p>This is your client dashboard. Use the sidebar to navigate your bookings, reviews, or update your profile.</p>
       `;
       document.getElementById('profile-content').innerHTML = content;
@@ -96,52 +96,72 @@
     }
 
     async function loadBookings() {
-      document.getElementById('profile-content').innerHTML = `<p>Loading your bookings...</p>`;
-      const res = await fetch(`http://localhost:5000/api/client/bookings`, {
-        headers: { 'Authorization': `Bearer ${token}` }
-      });
-      const bookings = await res.json();
+  document.getElementById('profile-content').innerHTML = `<p>Loading your bookings...</p>`;
 
-      const html = `
-        <h2 class="text-xl font-semibold mb-4">My Bookings</h2>
-        <div class="space-y-4">
-          ${bookings.length === 0
-            ? '<p class="text-gray-500">No bookings yet.</p>'
-            : bookings.map(b => `
-              <div class="bg-white p-4 rounded shadow">
-                <p><strong>Venue:</strong> ${b.Venue?.name}</p>
-                <p><strong>Date:</strong> ${b.eventDate}</p>
-                <p><strong>Status:</strong> ${b.status}</p>
-              </div>
-            `).join('')}
-        </div>
-      `;
-      document.getElementById('profile-content').innerHTML = html;
-    }
+  try {
+    const res = await fetch(`http://localhost:5000/api/client/bookings`, {
+      headers: { 'Authorization': `Bearer ${token}` }
+    });
+
+    if (!res.ok) throw new Error('Failed to fetch bookings');
+    const bookings = await res.json();
+
+    const html = `
+      <h2 class="text-xl font-semibold mb-4">My Bookings</h2>
+      <div class="space-y-4">
+        ${bookings.length === 0
+          ? '<p class="text-gray-500">No bookings yet.</p>'
+          : bookings.map(b => `
+            <div class="bg-white p-4 rounded shadow">
+              <p><strong>Venue:</strong> ${b.Venue?.name || 'Unknown'}</p>
+              <p><strong>Date:</strong> ${b.eventDate}</p>
+              <p><strong>Status:</strong> ${b.status}</p>
+            </div>
+          `).join('')}
+      </div>
+    `;
+    document.getElementById('profile-content').innerHTML = html;
+
+  } catch (error) {
+    console.error(error);
+    document.getElementById('profile-content').innerHTML = `<p class="text-red-600">Error loading bookings.</p>`;
+  }
+}
+
 
     async function loadReviews() {
-      document.getElementById('profile-content').innerHTML = `<p>Loading your reviews...</p>`;
-      const res = await fetch(`http://localhost:5000/api/client/reviews`, {
-        headers: { 'Authorization': `Bearer ${token}` }
-      });
-      const reviews = await res.json();
+  document.getElementById('profile-content').innerHTML = `<p>Loading your reviews...</p>`;
 
-      const html = `
-        <h2 class="text-xl font-semibold mb-4">My Reviews</h2>
-        <div class="space-y-4">
-          ${reviews.length === 0
-            ? '<p class="text-gray-500">You have not left any reviews.</p>'
-            : reviews.map(r => `
-              <div class="bg-white p-4 rounded shadow">
-                <p><strong>Venue:</strong> ${r.Venue?.name}</p>
-                <p><strong>Rating:</strong> ${'⭐'.repeat(r.rating)}</p>
-                <p><strong>Comment:</strong> ${r.comment || 'No comment'}</p>
-              </div>
-            `).join('')}
-        </div>
-      `;
-      document.getElementById('profile-content').innerHTML = html;
-    }
+  try {
+    const res = await fetch(`http://localhost:5000/api/client/reviews`, {
+      headers: { 'Authorization': `Bearer ${token}` }
+    });
+
+    if (!res.ok) throw new Error('Failed to fetch reviews');
+    const reviews = await res.json();
+
+    const html = `
+      <h2 class="text-xl font-semibold mb-4">My Reviews</h2>
+      <div class="space-y-4">
+        ${reviews.length === 0
+          ? '<p class="text-gray-500">You have not left any reviews.</p>'
+          : reviews.map(r => `
+            <div class="bg-white p-4 rounded shadow">
+              <p><strong>Venue:</strong> ${r.Venue?.name || 'Unknown'}</p>
+              <p><strong>Rating:</strong> ${'⭐'.repeat(r.rating)}</p>
+              <p><strong>Comment:</strong> ${r.comment || 'No comment'}</p>
+            </div>
+          `).join('')}
+      </div>
+    `;
+    document.getElementById('profile-content').innerHTML = html;
+
+  } catch (error) {
+    console.error(error);
+    document.getElementById('profile-content').innerHTML = `<p class="text-red-600">Error loading reviews.</p>`;
+  }
+}
+
 
     function loadSettings() {
       const html = `
